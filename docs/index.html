@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>子殷科技 - 政策简报仪表盘</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  background: #f0f2f5;
+  color: #333;
+  line-height: 1.6;
+}
+header {
+  background: linear-gradient(135deg, #0c0c0c, #1a1a2e, #16213e);
+  color: #fff;
+  padding: 32px 24px;
+  text-align: center;
+}
+header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+header p {
+  color: #a29bfe;
+  margin-top: 6px;
+  font-size: 15px;
+}
+header .subtitle {
+  color: #636e72;
+  font-size: 13px;
+  margin-top: 4px;
+}
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 16px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.tab-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0.6;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.tab-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+.tab-btn.active { opacity: 1; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transform: translateY(-2px); }
+.tab-btn .badge {
+  background: rgba(255,255,255,0.3);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.panel-header .info {
+  font-size: 14px;
+  color: #666;
+}
+.panel-header .info b { color: #333; }
+.panel-header .update-time { font-size: 13px; color: #999; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-left: 4px solid #ccc;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+.card .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.card .tags { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.card .tag {
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #fff;
+}
+.card .tag-outline {
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  background: #f0f0f0;
+  color: #555;
+}
+.card .date { font-size: 13px; color: #999; }
+.card h3 {
+  font-size: 15px;
+  color: #1a5276;
+  margin-bottom: 8px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.card .summary {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.card .detail-line {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 4px;
+}
+.card .relevance {
+  background: #fef9e7;
+  border-left: 3px solid #f39c12;
+  padding: 8px 12px;
+  margin: 8px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 13px;
+  color: #7d6608;
+}
+.card a {
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 500;
+}
+.card a:hover { text-decoration: underline; }
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+}
+.loading .spinner {
+  width: 40px; height: 40px;
+  border: 3px solid #eee;
+  border-top-color: #2980b9;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+footer {
+  text-align: center;
+  padding: 32px 16px;
+  color: #999;
+  font-size: 12px;
+}
+
+@media (max-width: 600px) {
+  header h1 { font-size: 22px; }
+  .tabs { gap: 6px; }
+  .tab-btn { padding: 8px 14px; font-size: 13px; }
+  .cards { grid-template-columns: 1fr; }
+  .card { padding: 16px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>子殷科技 - 政策简报仪表盘</h1>
+  <p>医学 x 人工智能 x 3D打印</p>
+  <div class="subtitle">内蒙古子殷科技有限公司 | AI 自动监测</div>
+</header>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="container">
+  <div id="panel-header" class="panel-header" style="display:none;">
+    <div class="info">
+      共 <b id="item-count">0</b> 条 | 分类: <span id="category-label"></span>
+    </div>
+    <div class="update-time" id="update-time"></div>
+  </div>
+  <div id="content">
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>正在加载数据...</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  本仪表盘数据由 AI 自动搜集，仅供内部参考。数据来源为公开网络搜索，可能存在遗漏。<br>
+  内蒙古子殷科技有限公司
+</footer>
+
+<script>
+const CATEGORIES = [
+  { key: 'briefing',     label: '医保政策',  color: '#2980b9', file: 'data/briefing.json' },
+  { key: 'bidding',      label: '招投标',    color: '#148f77', file: 'data/bidding.json' },
+  { key: 'kejitin',      label: '科技厅',    color: '#8e44ad', file: 'data/kejitin.json' },
+  { key: 'gongxinting',  label: '工信厅',    color: '#d35400', file: 'data/gongxinting.json' },
+  { key: 'jiaoyuting',   label: '教育厅',    color: '#2471a3', file: 'data/jiaoyuting.json' },
+  { key: 'fagaiwei',     label: '发改委',    color: '#c0392b', file: 'data/fagaiwei.json' },
+  { key: 'caizhengtng',  label: '财政厅',    color: '#1e8449', file: 'data/caizhengtng.json' },
+  { key: 'global_news',  label: '全球新闻',  color: '#2c3e50', file: 'data/global_news.json' },
+];
+
+const cache = {};
+let activeKey = null;
+
+function initTabs() {
+  const tabsEl = document.getElementById('tabs');
+  CATEGORIES.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn';
+    btn.style.background = cat.color;
+    btn.dataset.key = cat.key;
+    btn.innerHTML = `${cat.label}<span class="badge" id="badge-${cat.key}">--</span>`;
+    btn.addEventListener('click', () => switchTab(cat.key));
+    tabsEl.appendChild(btn);
+  });
+}
+
+async function loadData(key) {
+  if (cache[key]) return cache[key];
+  const cat = CATEGORIES.find(c => c.key === key);
+  try {
+    const resp = await fetch(cat.file + '?t=' + Date.now());
+    if (!resp.ok) throw new Error(resp.status);
+    const data = await resp.json();
+    cache[key] = data;
+    return data;
+  } catch (e) {
+    return null;
+  }
+}
+
+async function switchTab(key) {
+  activeKey = key;
+  const cat = CATEGORIES.find(c => c.key === key);
+
+  // Update active tab
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.key === key);
+  });
+
+  // Show loading
+  const content = document.getElementById('content');
+  content.innerHTML = '<div class="loading"><div class="spinner"></div><p>正在加载数据...</p></div>';
+  document.getElementById('panel-header').style.display = 'none';
+
+  const data = await loadData(key);
+
+  if (!data || !data.items) {
+    content.innerHTML = '<div class="empty">暂无数据，请等待下次自动更新。</div>';
+    return;
+  }
+
+  // Update header
+  const headerEl = document.getElementById('panel-header');
+  headerEl.style.display = 'flex';
+  document.getElementById('item-count').textContent = data.count || data.items.length;
+  document.getElementById('category-label').textContent = cat.label;
+  document.getElementById('update-time').textContent = data.updated ? `更新时间: ${data.updated}` : '';
+
+  // Update badge
+  const badge = document.getElementById('badge-' + key);
+  if (badge) badge.textContent = data.count || data.items.length;
+
+  // Render cards
+  if (data.items.length === 0) {
+    content.innerHTML = '<div class="empty">本周期内暂未检索到相关信息，将持续监测。</div>';
+    return;
+  }
+
+  content.innerHTML = '<div class="cards" id="cards-container"></div>';
+  const container = document.getElementById('cards-container');
+
+  data.items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.borderLeftColor = cat.color;
+
+    let html = '<div class="meta"><div class="tags">';
+
+    // Tags vary by category
+    if (key === 'briefing') {
+      if (item.province) html += `<span class="tag" style="background:${cat.color}">${esc(item.province)}</span>`;
+    } else if (key === 'bidding') {
+      if (item.type) {
+        const typeColors = {'招标公告':'#e74c3c','中标公告':'#27ae60','采购需求':'#2980b9','结果公示':'#8e44ad'};
+        html += `<span class="tag" style="background:${typeColors[item.type]||'#95a5a6'}">${esc(item.type)}</span>`;
+      }
+      if (item.province) html += `<span class="tag" style="background:${cat.color}">${esc(item.province)}</span>`;
+      if (item.budget) html += `<span class="tag-outline">${esc(item.budget)}</span>`;
+    } else if (key === 'global_news') {
+      if (item.category) {
+        const catColors = {'医学3D打印':'#2980b9','医学AI':'#8e44ad','AI+3D打印融合':'#d35400','行业融资':'#27ae60','监管标准':'#c0392b'};
+        html += `<span class="tag" style="background:${catColors[item.category]||'#7f8c8d'}">${esc(item.category)}</span>`;
+      }
+      if (item.region) html += `<span class="tag-outline">${esc(item.region)}</span>`;
+      if (item.source) html += `<span class="tag-outline">${esc(item.source)}</span>`;
+    } else {
+      // kejitin, gongxinting, jiaoyuting, fagaiwei, caizhengtng
+      if (item.province) html += `<span class="tag" style="background:${cat.color}">${esc(item.province)}</span>`;
+      if (item.deadline) html += `<span class="tag" style="background:#e74c3c">截止: ${esc(item.deadline)}</span>`;
+      if (item.funding) html += `<span class="tag-outline">${esc(item.funding)}</span>`;
+    }
+
+    html += '</div>';
+    html += `<span class="date">${esc(item.date || '')}</span>`;
+    html += '</div>';
+
+    html += `<h3>${esc(item.title || '')}</h3>`;
+
+    // Detail lines
+    if (key === 'bidding' && item.hospital) {
+      html += `<div class="detail-line">采购单位: ${esc(item.hospital)}</div>`;
+    }
+    if (['kejitin','gongxinting','jiaoyuting','fagaiwei','caizhengtng'].includes(key) && item.department) {
+      html += `<div class="detail-line">${esc(item.department)}</div>`;
+    }
+
+    html += `<div class="summary">${esc(item.summary || '')}</div>`;
+
+    // Relevance for global news
+    if (key === 'global_news' && item.relevance) {
+      html += `<div class="relevance">与子殷关联: ${esc(item.relevance)}</div>`;
+    }
+
+    const linkColor = cat.color;
+    const url = item.url || '#';
+    html += `<a href="${esc(url)}" target="_blank" rel="noopener" style="color:${linkColor}">查看原文 &rarr;</a>`;
+
+    card.innerHTML = html;
+    container.appendChild(card);
+  });
+}
+
+function esc(str) {
+  if (!str) return '';
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// Load all badge counts on init
+async function loadAllBadges() {
+  const promises = CATEGORIES.map(async cat => {
+    const data = await loadData(cat.key);
+    const badge = document.getElementById('badge-' + cat.key);
+    if (data && badge) {
+      badge.textContent = data.count || (data.items ? data.items.length : 0);
+    } else if (badge) {
+      badge.textContent = '0';
+    }
+  });
+  await Promise.all(promises);
+}
+
+// Init
+initTabs();
+loadAllBadges().then(() => {
+  switchTab('briefing');
+});
+</script>
+
+</body>
+</html>

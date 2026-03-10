@@ -148,6 +148,13 @@ def main():
         print(f"[ERROR] 搜索失败: {e}")
         policies = []
 
+    # Save results for web dashboard
+    import json
+    os.makedirs("docs/data", exist_ok=True)
+    with open("docs/data/briefing.json", "w", encoding="utf-8") as f:
+        json.dump({"updated": TODAY, "count": len(policies), "items": policies}, f, ensure_ascii=False, indent=2)
+    print(f"[INFO] 已保存 docs/data/briefing.json")
+
     html = build_html(policies)
 
     try:

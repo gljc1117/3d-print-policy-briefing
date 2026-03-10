@@ -203,6 +203,14 @@ def main():
     except Exception as e:
         print(f"[ERROR] 搜索失败: {e}")
         items = []
+
+    # Save results for web dashboard
+    import json
+    os.makedirs("docs/data", exist_ok=True)
+    with open("docs/data/global_news.json", "w", encoding="utf-8") as f:
+        json.dump({"updated": TODAY, "count": len(items), "items": items}, f, ensure_ascii=False, indent=2)
+    print(f"[INFO] 已保存 docs/data/global_news.json")
+
     html = build_html(items)
     try:
         send_email(html)
