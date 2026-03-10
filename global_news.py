@@ -3,7 +3,6 @@
 每周自动搜索全球医学+人工智能+3D打印领域新闻，生成子殷科技专属行业简报。
 """
 
-import json
 import os
 import smtplib
 import sys
@@ -11,101 +10,45 @@ from datetime import datetime, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-import anthropic
+from search_utils import apify_google_search, summarize_with_claude
 
-ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 GMAIL_ADDRESS = os.environ["GMAIL_ADDRESS"]
 GMAIL_APP_PASSWORD = os.environ["GMAIL_APP_PASSWORD"]
 RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", "liyingxi49@gmail.com")
 
-MODEL = "claude-3-5-haiku-20241022"
 TODAY = datetime.now().strftime("%Y-%m-%d")
-ONE_WEEK_AGO = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
+PERIOD_START = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
+YEAR = datetime.now().year
 
 # ──────────────────────── Stage 1: 搜索 ──────────────────────
 
-SEARCH_PROMPT = f"""今天是 {TODAY}。搜索 {ONE_WEEK_AGO} 至 {TODAY} 期间全球"医学+AI+3D打印"领域最新动态。
-
-搜索以下关键词：
-1. "医学3D打印 骨科 PEEK 最新 {datetime.now().year}"
-2. "3D printing medical orthopedic news 2026"
-3. "医学影像 AI 人工智能 最新进展 {datetime.now().year}"
-4. "medical AI 3D printing 2026 news"
-5. "NMPA FDA 3D打印 医疗器械 审批 {datetime.now().year}"
-6. "医疗3D打印 融资 商业化 {datetime.now().year}"
-
-规则：只含 {ONE_WEEK_AGO} 后的内容，必须附真实链接，无结果则输出 []。
-
-重要：你的回复必须只包含一个 JSON 数组，不要包含任何解释文字。如果搜索结果中有相关内容（即使发布日期不完全精确），也应该包含在输出中。直接以 [ 开头输出。
-
-输出 JSON 数组（不要代码块），格式：
-[{{"category":"医学3D打印/医学AI/AI+3D打印融合/行业融资/监管标准","region":"国家","date":"YYYY-MM-DD","title":"标题(中文)","source":"来源","summary":"摘要100字内中文","relevance":"与医疗3D打印/骨科器械/PEEK/医学影像AI的关联50字内","url":"链接"}}]"""
-
-
-def _parse_json(text: str) -> list[dict] | None:
-    text = text.strip()
-    if text.startswith("```"):
-        text = text.split("\n", 1)[1]
-        text = text.rsplit("```", 1)[0].strip()
-    try:
-        result = json.loads(text)
-        if isinstance(result, list):
-            return result
-    except json.JSONDecodeError:
-        pass
-    start = text.find("[")
-    end = text.rfind("]") + 1
-    if start >= 0 and end > start:
-        try:
-            result = json.loads(text[start:end])
-            if isinstance(result, list):
-                return result
-        except json.JSONDecodeError:
-            pass
-    return None
-
-
-def _extract_json_via_llm(client, raw_text: str, json_schema: str) -> list[dict]:
-    response = client.messages.create(
-        model=MODEL,
-        system="你是一个JSON格式化工具。用户会给你一段包含搜索结果的文本，你必须将其中的信息提取并转为JSON数组输出。只输出JSON数组，以[开头，以]结尾。不要输出任何其他文字。",
-        max_tokens=16384,
-        messages=[{"role": "user", "content": f"请将以下搜索结果转为JSON数组，格式：{json_schema}\n\n---\n{raw_text}"}],
-    )
-    text = ""
-    for block in response.content:
-        if block.type == "text":
-            text += block.text
-    print(f"[DEBUG] 二次提取返回 ({len(text)} 字符): {text[:200]}")
-    result = _parse_json(text)
-    return result if result is not None else []
-
+SEARCH_QUERIES = [
+    f"医学3D打印 骨科 PEEK 最新 {YEAR}",
+    "3D printing medical orthopedic news 2026",
+    f"医学影像 AI 人工智能 最新进展 {YEAR}",
+    "medical AI 3D printing 2026 news",
+    f"NMPA FDA 3D打印 医疗器械 审批 {YEAR}",
+    f"医疗3D打印 融资 商业化 {YEAR}",
+]
 
 JSON_SCHEMA = '[{"category":"医学3D打印/医学AI/AI+3D打印融合/行业融资/监管标准","region":"国家","date":"YYYY-MM-DD","title":"标题(中文)","source":"来源","summary":"摘要100字内","relevance":"关联分析50字内","url":"链接"}]'
 
+SUMMARIZE_PROMPT = f"""从以下搜索结果中筛选与"全球医学+AI+3D打印领域最新动态"相关的内容。
+时段 {PERIOD_START} ~ {TODAY}，优先近期内容，高度相关的稍早内容也可包含。
+包括：医学3D打印、骨科PEEK、医学影像AI、NMPA/FDA审批、医疗3D打印融资商业化等。
+每条需标注category（医学3D打印/医学AI/AI+3D打印融合/行业融资/监管标准）和relevance（与医疗3D打印/骨科器械/PEEK/医学影像AI的关联）。
+宁多勿少，只要相关都应包含。"""
+
 
 def search_news() -> list[dict]:
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-
-    response = client.messages.create(
-        model=MODEL,
-        system="你是一个数据采集API，只输出JSON数组。禁止输出任何解释、分析或说明文字。搜索后直接输出以[开头的JSON数组。",
+    results = apify_google_search(SEARCH_QUERIES)
+    items = summarize_with_claude(
+        results,
+        system_prompt="你是一个JSON格式化工具，只输出JSON数组。",
+        user_prompt=SUMMARIZE_PROMPT,
+        json_schema=JSON_SCHEMA,
         max_tokens=16384,
-        tools=[{"type": "web_search_20250305", "name": "web_search"}],
-        messages=[{"role": "user", "content": SEARCH_PROMPT}],
     )
-
-    text = ""
-    for block in response.content:
-        if block.type == "text":
-            text += block.text
-    print(f"[DEBUG] Claude 原始返回 ({len(text)} 字符): {text[:500]}")
-
-    items = _parse_json(text)
-    if items is None:
-        print("[INFO] 直接解析失败，使用二次 LLM 提取...")
-        items = _extract_json_via_llm(client, text, JSON_SCHEMA)
-
     print(f"[INFO] 搜索到 {len(items)} 条全球行业新闻")
     return items
 
@@ -122,7 +65,7 @@ CATEGORY_STYLE = {
 
 
 def build_html(items: list[dict]) -> str:
-    date_range = f"{ONE_WEEK_AGO} ~ {TODAY}"
+    date_range = f"{PERIOD_START} ~ {TODAY}"
 
     if not items:
         items_html = """
@@ -254,7 +197,7 @@ def send_email(html: str):
 
 
 def main():
-    print(f"[INFO] 全球行业周刊 | {ONE_WEEK_AGO} ~ {TODAY}")
+    print(f"[INFO] 全球行业周刊 | {PERIOD_START} ~ {TODAY}")
     try:
         items = search_news()
     except Exception as e:

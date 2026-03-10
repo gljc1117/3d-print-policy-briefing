@@ -3,7 +3,6 @@
 每周自动搜索各省医学影像三维重建、3D打印相关招投标信息，生成简报并发送邮件。
 """
 
-import json
 import os
 import smtplib
 import sys
@@ -11,125 +10,46 @@ from datetime import datetime, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-import anthropic
+from search_utils import apify_google_search, summarize_with_claude
 
 # ──────────────────────────── 配置 ────────────────────────────
 
-ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 GMAIL_ADDRESS = os.environ["GMAIL_ADDRESS"]
 GMAIL_APP_PASSWORD = os.environ["GMAIL_APP_PASSWORD"]
 RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", "liyingxi49@gmail.com")
 
-MODEL = "claude-3-5-haiku-20241022"
 TODAY = datetime.now().strftime("%Y-%m-%d")
 ONE_MONTH_AGO = (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d")
 
 # ──────────────────────── Stage 1: 搜索 ──────────────────────
 
-SEARCH_PROMPT = f"""今天是 {TODAY}。
-请搜索 **{ONE_MONTH_AGO} 至 {TODAY}** 期间，中国各省市关于"医学影像三维重建"和"3D打印"相关的招投标信息（包括招标公告、中标公告、采购需求公示等）。
+YEAR = datetime.now().year
 
-请依次使用以下搜索关键词（每组至少搜索一次）：
-1. "医学影像三维重建 招标 {datetime.now().year}"
-2. "3D打印 骨科 招标公告 中标"
-3. "医学3D打印 采购 招投标"
-4. "三维重建 手术导板 3D打印 招标"
-5. "个性化骨科器械 3D打印 中标公告"
-6. "医学影像 三维建模 采购公告"
-7. "PEEK 3D打印 医疗 招标"
-8. "后装放疗模具 3D打印 采购"
-9. "数字骨科 3D打印 招标 医院"
-10. "医疗3D打印服务 招投标 中标 {datetime.now().year}"
+SEARCH_QUERIES = [
+    f"医学影像三维重建 招标 {YEAR}",
+    "3D打印 骨科 招标公告 中标",
+    "医学3D打印 采购 招投标",
+    "三维重建 手术导板 3D打印 招标",
+    "个性化骨科器械 3D打印 中标公告",
+    "PEEK 3D打印 医疗 招标",
+    f"医疗3D打印服务 招投标 中标 {YEAR}",
+]
 
-规则：
-- 优先包含 {ONE_MONTH_AGO} 之后发布的内容，但高度相关的稍早内容也应包含
-- 每条结果必须附带真实的来源链接（来自搜索结果）
-- 宁多勿少：只要与医学3D打印/三维重建招投标相关，都应包含
-- 重点关注以下区域的信息：内蒙古、上海、天津、四川（广元/绵阳）、安徽（阜阳/淮南/安庆）
+JSON_SCHEMA = '[{"province":"省份","date":"YYYY-MM-DD","title":"项目名称","type":"招标公告/中标公告/采购需求/结果公示","hospital":"采购单位","budget":"预算金额","summary":"摘要100字内","url":"链接"}]'
 
-请输出一个 JSON 数组（不要 markdown 代码块包裹），每个元素格式如下：
-{{
-  "province": "省份或城市",
-  "date": "YYYY-MM-DD",
-  "title": "招投标项目名称",
-  "type": "招标公告/中标公告/采购需求/结果公示",
-  "hospital": "采购单位（医院/机构名称）",
-  "budget": "预算金额（如有）",
-  "summary": "核心内容摘要，100字以内",
-  "url": "原文链接"
-}}
-
-如果确实没有任何相关结果，请输出空数组 []。但请注意：宁可多输出几条不完全匹配的结果，也不要输出空数组。
-
-重要：你的回复必须只包含一个 JSON 数组，不要包含任何解释文字、分析或说明。如果搜索结果中有相关内容（即使发布日期不完全精确），也应该包含在输出中。直接以 [ 开头输出。"""
-
-
-def _parse_json(text: str) -> list[dict] | None:
-    text = text.strip()
-    if text.startswith("```"):
-        text = text.split("\n", 1)[1]
-        text = text.rsplit("```", 1)[0].strip()
-    try:
-        result = json.loads(text)
-        if isinstance(result, list):
-            return result
-    except json.JSONDecodeError:
-        pass
-    start = text.find("[")
-    end = text.rfind("]") + 1
-    if start >= 0 and end > start:
-        try:
-            result = json.loads(text[start:end])
-            if isinstance(result, list):
-                return result
-        except json.JSONDecodeError:
-            pass
-    return None
-
-
-def _extract_json_via_llm(client, raw_text: str, json_schema: str) -> list[dict]:
-    response = client.messages.create(
-        model=MODEL,
-        system="你是一个JSON格式化工具。用户会给你一段包含搜索结果的文本，你必须将其中的信息提取并转为JSON数组输出。只输出JSON数组，以[开头，以]结尾。不要输出任何其他文字。",
-        max_tokens=8192,
-        messages=[{"role": "user", "content": f"请将以下搜索结果转为JSON数组，格式：{json_schema}\n\n---\n{raw_text}"}],
-    )
-    text = ""
-    for block in response.content:
-        if block.type == "text":
-            text += block.text
-    print(f"[DEBUG] 二次提取返回 ({len(text)} 字符): {text[:200]}")
-    result = _parse_json(text)
-    return result if result is not None else []
-
-
-JSON_SCHEMA = '[{"province":"省份","date":"YYYY-MM-DD","title":"项目名称","type":"招标公告/中标公告/采购需求/结果公示","hospital":"采购单位","budget":"预算金额","summary":"摘要","url":"链接"}]'
+SUMMARIZE_PROMPT = f"""从以下搜索结果中筛选与"医学3D打印/三维重建招投标"相关的内容。
+时段 {ONE_MONTH_AGO} ~ {TODAY}，优先近期，高度相关的稍早内容也可包含。
+重点关注：内蒙古、上海、天津、四川（广元/绵阳）、安徽。宁多勿少。"""
 
 
 def search_bidding() -> list[dict]:
-    """调用 Claude API + web_search 工具搜索近期招投标信息。"""
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-
-    response = client.messages.create(
-        model=MODEL,
-        system="你是一个数据采集API，只输出JSON数组。禁止输出任何解释、分析或说明文字。搜索后直接输出以[开头的JSON数组。",
-        max_tokens=8192,
-        tools=[{"type": "web_search_20250305", "name": "web_search"}],
-        messages=[{"role": "user", "content": SEARCH_PROMPT}],
+    results = apify_google_search(SEARCH_QUERIES)
+    items = summarize_with_claude(
+        results,
+        system_prompt="你是一个JSON格式化工具，只输出JSON数组。",
+        user_prompt=SUMMARIZE_PROMPT,
+        json_schema=JSON_SCHEMA,
     )
-
-    text = ""
-    for block in response.content:
-        if block.type == "text":
-            text += block.text
-
-    print(f"[DEBUG] Claude 原始返回 ({len(text)} 字符): {text[:500]}")
-
-    items = _parse_json(text)
-    if items is None or (len(items) == 0 and len(text) > 200):
-        print(f"[INFO] {'直接解析失败' if items is None else '返回空数组但原文较长'}，使用二次 LLM 提取...")
-        items = _extract_json_via_llm(client, text, JSON_SCHEMA)
-
     print(f"[INFO] 搜索到 {len(items)} 条近期招投标信息")
     return items
 
