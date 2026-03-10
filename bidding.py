@@ -19,7 +19,7 @@ GMAIL_APP_PASSWORD = os.environ["GMAIL_APP_PASSWORD"]
 RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", "liyingxi49@gmail.com")
 
 TODAY = datetime.now().strftime("%Y-%m-%d")
-ONE_MONTH_AGO = (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d")
+PERIOD_START = (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d")
 
 # ──────────────────────── Stage 1: 搜索 ──────────────────────
 
@@ -38,7 +38,7 @@ SEARCH_QUERIES = [
 JSON_SCHEMA = '[{"province":"省份","date":"YYYY-MM-DD","title":"项目名称","type":"招标公告/中标公告/采购需求/结果公示","hospital":"采购单位","budget":"预算金额","summary":"摘要100字内","url":"链接"}]'
 
 SUMMARIZE_PROMPT = f"""从以下搜索结果中筛选与"医学3D打印/三维重建招投标"相关的内容。
-时段 {ONE_MONTH_AGO} ~ {TODAY}，优先近期，高度相关的稍早内容也可包含。
+时段 {PERIOD_START} ~ {TODAY}，优先近期，高度相关的稍早内容也可包含。
 重点关注：内蒙古、上海、天津、四川（广元/绵阳）、安徽。宁多勿少。"""
 
 
@@ -66,7 +66,7 @@ TYPE_COLORS = {
 
 def build_html(items: list[dict]) -> str:
     """将招投标列表渲染为 HTML 邮件内容。"""
-    date_range = f"{ONE_MONTH_AGO} ~ {TODAY}"
+    date_range = f"{PERIOD_START} ~ {TODAY}"
 
     if not items:
         items_html = """
@@ -195,7 +195,7 @@ def send_email(html: str):
 
 
 def main():
-    print(f"[INFO] 开始生成招投标简报 | 时段: {ONE_MONTH_AGO} ~ {TODAY}")
+    print(f"[INFO] 开始生成招投标简报 | 时段: {PERIOD_START} ~ {TODAY}")
 
     try:
         items = search_bidding()

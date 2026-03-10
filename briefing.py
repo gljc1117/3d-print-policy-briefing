@@ -54,7 +54,7 @@ def search_policies() -> list[dict]:
 
 def build_html(policies: list[dict]) -> str:
     """将政策列表渲染为 HTML 邮件内容。"""
-    date_range = f"{ONE_MONTH_AGO} ~ {TODAY}"
+    date_range = f"{PERIOD_START} ~ {TODAY}"
 
     if not policies:
         items_html = """
@@ -140,7 +140,7 @@ def send_email(html: str):
 
 
 def main():
-    print(f"[INFO] 开始生成简报 | 时段: {ONE_MONTH_AGO} ~ {TODAY}")
+    print(f"[INFO] 开始生成简报 | 时段: {PERIOD_START} ~ {TODAY}")
 
     try:
         policies = search_policies()
