@@ -24,68 +24,20 @@ ONE_WEEK_AGO = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
 
 # ──────────────────────── Stage 1: 搜索 ──────────────────────
 
-SEARCH_PROMPT = f"""今天是 {TODAY}。
-请搜索 **{ONE_WEEK_AGO} 至 {TODAY}** 期间，全球范围内与"医学 + 人工智能 + 3D打印"交叉领域相关的最新新闻、论文、产品发布、融资、行业动态。
+SEARCH_PROMPT = f"""今天是 {TODAY}。搜索 {ONE_WEEK_AGO} 至 {TODAY} 期间全球"医学+AI+3D打印"领域最新动态。
 
-搜索范围覆盖以下细分方向（中英文都要搜）：
+搜索以下关键词：
+1. "医学3D打印 骨科 PEEK 最新 {datetime.now().year}"
+2. "3D printing medical orthopedic news 2026"
+3. "医学影像 AI 人工智能 最新进展 {datetime.now().year}"
+4. "medical AI 3D printing 2026 news"
+5. "NMPA FDA 3D打印 医疗器械 审批 {datetime.now().year}"
+6. "医疗3D打印 融资 商业化 {datetime.now().year}"
 
-【医学3D打印】
-1. "医学3D打印 最新进展 {datetime.now().year}"
-2. "3D printed implant orthopedic 2026"
-3. "3D打印 骨科植入物 PEEK 最新"
-4. "3D打印 手术导板 手术模型 临床应用"
-5. "bioprinting organ tissue 2026"
-6. "生物3D打印 组织器官 最新突破"
+规则：只含 {ONE_WEEK_AGO} 后的内容，必须附真实链接，无结果则输出 []。
 
-【医学AI / 医学影像AI】
-7. "医学影像 AI 人工智能 最新 {datetime.now().year}"
-8. "medical imaging AI radiology 2026"
-9. "AI 辅助诊断 骨科 影像 最新"
-10. "AI surgical planning 3D reconstruction"
-11. "医学影像三维重建 AI 深度学习"
-
-【AI + 3D打印融合】
-12. "AI 3D printing medical personalized 2026"
-13. "人工智能 3D打印 个性化医疗 最新"
-14. "AI驱动 医疗器械 智能制造"
-15. "digital twin orthopedic 3D printing"
-
-【行业融资与商业化】
-16. "3D printing medical startup funding 2026"
-17. "医疗3D打印 融资 商业化 {datetime.now().year}"
-18. "medical AI company funding Series 2026"
-
-【监管与标准】
-19. "FDA 3D printed medical device approval 2026"
-20. "NMPA 3D打印 医疗器械 注册审批 {datetime.now().year}"
-
-严格规则：
-- 只包含 {ONE_WEEK_AGO} 之后发布的内容
-- 每条结果必须附带真实的来源链接
-- 如果某组搜索没有近一周结果，跳过
-- 中文和英文新闻都要覆盖
-
-请输出一个 JSON 数组（不要 markdown 代码块包裹），每个元素格式如下：
-{{
-  "category": "医学3D打印/医学AI/AI+3D打印融合/行业融资/监管标准",
-  "region": "国家或地区",
-  "date": "YYYY-MM-DD",
-  "title": "新闻标题（中文）",
-  "title_original": "原始标题（如英文则保留英文）",
-  "source": "来源媒体/期刊",
-  "summary": "核心内容摘要，150字以内，用中文",
-  "relevance": "与子殷科技业务的关联分析，50字以内",
-  "url": "原文链接"
-}}
-
-关于"与子殷科技业务的关联分析"，参考以下业务背景：
-- 核心业务：医疗3D打印（定制骨科器械、PEEK材料、后装放疗模具）、医疗AI平台
-- 战略项目：盘古计划（医学影像Agent操作系统）、数智骨科临床转化中心（与天津医院合作）
-- 合作医院：上海六院、内蒙古医科大二附院、天津医院、广元市第一人民医院、内蒙古国际蒙医医院
-- 资质：二类医疗器械注册证
-- 工厂：上海松江泗泾400㎡
-
-如果没有任何近一周的新闻，请输出空数组 []。"""
+输出 JSON 数组（不要代码块），格式：
+[{{"category":"医学3D打印/医学AI/AI+3D打印融合/行业融资/监管标准","region":"国家","date":"YYYY-MM-DD","title":"标题(中文)","source":"来源","summary":"摘要100字内中文","relevance":"与医疗3D打印/骨科器械/PEEK/医学影像AI的关联50字内","url":"链接"}}]"""
 
 
 def search_news() -> list[dict]:
@@ -102,6 +54,7 @@ def search_news() -> list[dict]:
     for block in response.content:
         if block.type == "text":
             text += block.text
+    print(f"[DEBUG] Claude 原始返回 ({len(text)} 字符): {text[:300]}")
     text = text.strip()
     if text.startswith("```"):
         text = text.split("\n", 1)[1]

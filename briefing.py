@@ -70,6 +70,7 @@ def search_policies() -> list[dict]:
             text += block.text
 
     # 解析 JSON
+    print(f"[DEBUG] Claude 原始返回 ({len(text)} 字符): {text[:300]}")
     text = text.strip()
     if text.startswith("```"):
         text = text.split("\n", 1)[1]

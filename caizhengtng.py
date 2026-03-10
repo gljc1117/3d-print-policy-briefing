@@ -82,6 +82,7 @@ def search_projects() -> list[dict]:
     for block in response.content:
         if block.type == "text":
             text += block.text
+    print(f"[DEBUG] Claude 原始返回 ({len(text)} 字符): {text[:300]}")
     text = text.strip()
     if text.startswith("```"):
         text = text.split("\n", 1)[1]
