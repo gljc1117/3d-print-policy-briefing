@@ -6,6 +6,9 @@ on:
     - cron: '30 1 * * 1'
   workflow_dispatch: # 支持手动触发测试
 
+permissions:
+  contents: write
+
 jobs:
   send-briefing:
     runs-on: ubuntu-latest
