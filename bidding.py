@@ -20,7 +20,7 @@ GMAIL_ADDRESS = os.environ["GMAIL_ADDRESS"]
 GMAIL_APP_PASSWORD = os.environ["GMAIL_APP_PASSWORD"]
 RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", "liyingxi49@gmail.com")
 
-MODEL = "claude-sonnet-4-20250514"
+MODEL = "claude-haiku-4-5-20251001"
 TODAY = datetime.now().strftime("%Y-%m-%d")
 ONE_MONTH_AGO = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
 
@@ -62,24 +62,48 @@ SEARCH_PROMPT = f"""今天是 {TODAY}。
 如果确实没有任何近一个月的招投标信息，请输出空数组 []。"""
 
 
+def _call_with_tool_loop(client, prompt: str, max_turns: int = 25) -> str:
+    """手动处理 web_search 多轮 tool_use，每轮只保留必要上下文。"""
+    messages = [{"role": "user", "content": prompt}]
+    tools = [{"type": "web_search_20250305"}]
+    final_text = ""
+
+    for turn in range(max_turns):
+        response = client.messages.create(
+            model=MODEL,
+            max_tokens=8192,
+            tools=tools,
+            messages=messages,
+        )
+        for block in response.content:
+            if block.type == "text":
+                final_text += block.text
+        if response.stop_reason == "end_turn":
+            break
+        tool_results = [b for b in response.content if b.type == "tool_use"]
+        if not tool_results:
+            break
+        assistant_msg = {"role": "assistant", "content": response.content}
+        tool_result_blocks = [
+            {"type": "tool_result", "tool_use_id": t.id, "content": "搜索完成，请继续下一个搜索或输出最终结果。"}
+            for t in tool_results
+        ]
+        messages = [
+            {"role": "user", "content": prompt},
+            assistant_msg,
+            {"role": "user", "content": tool_result_blocks},
+        ]
+        print(f"[INFO] web_search 第 {turn + 1} 轮完成")
+
+    return final_text
+
+
 def search_bidding() -> list[dict]:
     """调用 Claude API + web_search 工具搜索近期招投标信息。"""
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
-    response = client.messages.create(
-        model=MODEL,
-        max_tokens=8192,
-        tools=[{"type": "web_search_20250305"}],
-        messages=[{"role": "user", "content": SEARCH_PROMPT}],
-    )
+    text = _call_with_tool_loop(client, SEARCH_PROMPT)
 
-    # 从响应中提取文本
-    text = ""
-    for block in response.content:
-        if block.type == "text":
-            text += block.text
-
-    # 解析 JSON
     text = text.strip()
     if text.startswith("```"):
         text = text.split("\n", 1)[1]
