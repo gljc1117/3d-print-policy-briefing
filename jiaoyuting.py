@@ -73,6 +73,7 @@ def search_projects() -> list[dict]:
 
     response = client.messages.create(
         model=MODEL,
+        system="你是一个数据采集API，只输出JSON数组。禁止输出任何解释、分析或说明文字。搜索后直接输出以[开头的JSON数组。",
         max_tokens=8192,
         tools=[{"type": "web_search_20250305", "name": "web_search"}],
         messages=[{"role": "user", "content": SEARCH_PROMPT}],
