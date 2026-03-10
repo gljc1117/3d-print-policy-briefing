@@ -77,8 +77,8 @@ def _parse_json(text: str) -> list[dict] | None:
         result = json.loads(text)
         if isinstance(result, list):
             return result
-    except json.JSONDecodeError:
-        pass
+    except json.JSONDecodeError as e:
+        print(f"[DEBUG] json.loads 失败: {e}")
     start = text.find("[")
     end = text.rfind("]") + 1
     if start >= 0 and end > start:
@@ -86,8 +86,20 @@ def _parse_json(text: str) -> list[dict] | None:
             result = json.loads(text[start:end])
             if isinstance(result, list):
                 return result
-        except json.JSONDecodeError:
-            pass
+        except json.JSONDecodeError as e:
+            print(f"[DEBUG] 子串解析也失败: {e}")
+            # 尝试修复截断的 JSON：找到最后一个完整的 },] 并截断
+            chunk = text[start:end]
+            last_complete = chunk.rfind("},")
+            if last_complete > 0:
+                fixed = chunk[:last_complete + 1] + "]"
+                try:
+                    result = json.loads(fixed)
+                    if isinstance(result, list):
+                        print(f"[INFO] 截断修复成功，恢复 {len(result)} 条")
+                        return result
+                except json.JSONDecodeError:
+                    pass
     return None
 
 
@@ -130,11 +142,15 @@ def summarize_with_claude(
         if block.type == "text":
             text += block.text
 
-    print(f"[DEBUG] Claude 返回 ({len(text)} 字符): {text[:200]}")
+    print(f"[DEBUG] Claude 返回 ({len(text)} 字符)")
+    print(f"[DEBUG] 前300字: {text[:300]}")
+    print(f"[DEBUG] 后200字: {text[-200:]}")
+    print(f"[DEBUG] stop_reason: {response.stop_reason}")
 
     items = _parse_json(text)
     if items is None:
-        print("[WARN] JSON 解析失败")
+        print(f"[WARN] JSON 解析失败，原文长度 {len(text)}")
         return []
 
+    print(f"[DEBUG] 解析成功: {len(items)} 条")
     return items
