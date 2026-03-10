@@ -56,7 +56,7 @@ SEARCH_PROMPT = f"""今天是 {TODAY}。
 def _call_with_tool_loop(client, prompt: str, max_turns: int = 25) -> str:
     """手动处理 web_search 多轮 tool_use，每轮只保留必要上下文。"""
     messages = [{"role": "user", "content": prompt}]
-    tools = [{"type": "web_search_20250305"}]
+    tools = [{"type": "web_search_20250305", "name": "web_search"}]
     final_text = ""
 
     for turn in range(max_turns):
