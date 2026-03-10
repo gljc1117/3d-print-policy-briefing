@@ -12,7 +12,7 @@ import urllib.error
 
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 APIFY_TOKEN = os.environ["APIFY_TOKEN"]
-MODEL = "claude-3-5-haiku-20241022"
+MODEL = "claude-haiku-4-5-20251001"
 
 APIFY_ACTOR = "apify~google-search-scraper"
 APIFY_ENDPOINT = f"https://api.apify.com/v2/acts/{APIFY_ACTOR}/run-sync-get-dataset-items"
