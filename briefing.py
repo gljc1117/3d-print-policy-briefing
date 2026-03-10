@@ -20,7 +20,7 @@ GMAIL_ADDRESS = os.environ["GMAIL_ADDRESS"]
 GMAIL_APP_PASSWORD = os.environ["GMAIL_APP_PASSWORD"]
 RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", "liyingxi49@gmail.com")
 
-MODEL = "claude-haiku-4-5-20251001"
+MODEL = "claude-3-5-haiku-20241022"
 TODAY = datetime.now().strftime("%Y-%m-%d")
 ONE_MONTH_AGO = (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d")
 
