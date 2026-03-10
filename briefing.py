@@ -22,7 +22,7 @@ RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", "liyingxi49@gmail.com")
 
 MODEL = "claude-haiku-4-5-20251001"
 TODAY = datetime.now().strftime("%Y-%m-%d")
-ONE_MONTH_AGO = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
+ONE_MONTH_AGO = (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d")
 
 # ──────────────────────── Stage 1: 搜索 ──────────────────────
 
@@ -36,10 +36,10 @@ SEARCH_PROMPT = f"""今天是 {TODAY}。
 4. "个性化医疗器械 3D打印 定价政策"
 5. "生物3D打印 医保 价格项目"
 
-严格规则：
-- 只包含 {ONE_MONTH_AGO} 之后发布的内容
+规则：
+- 优先包含 {ONE_MONTH_AGO} 之后发布的内容，但如果搜索到高度相关的稍早内容也应包含
 - 每条结果必须附带真实的来源链接（来自搜索结果）
-- 如果某组搜索没有近一个月的结果，跳过即可
+- 宁多勿少：只要与3D打印医疗服务收费政策相关，都应包含在输出中
 
 请输出一个 JSON 数组（不要 markdown 代码块包裹），每个元素格式如下：
 {{
@@ -50,7 +50,7 @@ SEARCH_PROMPT = f"""今天是 {TODAY}。
   "url": "原文链接"
 }}
 
-如果确实没有任何近一个月的新政策/新闻，请输出空数组 []。
+如果确实没有任何相关结果，请输出空数组 []。但请注意：宁可多输出几条不完全匹配的结果，也不要输出空数组。
 
 重要：你的回复必须只包含一个 JSON 数组，不要包含任何解释文字、分析或说明。如果搜索结果中有相关内容（即使发布日期不完全精确），也应该包含在输出中。直接以 [ 开头输出。"""
 
@@ -119,8 +119,8 @@ def search_policies() -> list[dict]:
     print(f"[DEBUG] Claude 原始返回 ({len(text)} 字符): {text[:500]}")
 
     policies = _parse_json(text)
-    if policies is None:
-        print("[INFO] 直接解析失败，使用二次 LLM 提取...")
+    if policies is None or (len(policies) == 0 and len(text) > 200):
+        print(f"[INFO] {'直接解析失败' if policies is None else '返回空数组但原文较长'}，使用二次 LLM 提取...")
         policies = _extract_json_via_llm(client, text, JSON_SCHEMA)
 
     print(f"[INFO] 搜索到 {len(policies)} 条近期政策/新闻")
