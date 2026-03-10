@@ -20,7 +20,7 @@ RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", "liyingxi49@gmail.com")
 
 MODEL = "claude-haiku-4-5-20251001"
 TODAY = datetime.now().strftime("%Y-%m-%d")
-ONE_WEEK_AGO = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+ONE_WEEK_AGO = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
 
 # ──────────────────────── Stage 1: 搜索 ──────────────────────
 
