@@ -53,66 +53,21 @@ SEARCH_PROMPT = f"""今天是 {TODAY}。
 如果确实没有任何近一个月的新政策/新闻，请输出空数组 []。"""
 
 
-def _call_with_tool_loop(client, prompt: str, max_turns: int = 25) -> str:
-    """手动处理 web_search 多轮 tool_use，每轮只保留必要上下文。"""
-    messages = [{"role": "user", "content": prompt}]
-    tools = [{"type": "web_search_20250305", "name": "web_search"}]
-    final_text = ""
-
-    for turn in range(max_turns):
-        response = client.messages.create(
-            model=MODEL,
-            max_tokens=4096,
-            tools=tools,
-            messages=messages,
-        )
-
-        # 收集本轮文本
-        for block in response.content:
-            if block.type == "text":
-                final_text += block.text
-
-        # 如果模型结束了，返回结果
-        if response.stop_reason == "end_turn":
-            break
-
-        # 如果模型要求调用工具，构建下一轮消息
-        # 只保留用户原始消息 + 最新一轮的 assistant/tool_result
-        tool_results = []
-        for block in response.content:
-            if block.type == "tool_use":
-                tool_results.append(block)
-
-        if not tool_results:
-            break
-
-        # 构建精简的消息：只保留原始 prompt + 当前轮次
-        assistant_msg = {"role": "assistant", "content": response.content}
-        tool_result_blocks = []
-        for tool_block in tool_results:
-            tool_result_blocks.append({
-                "type": "tool_result",
-                "tool_use_id": tool_block.id,
-                "content": "搜索完成，请继续下一个搜索或输出最终结果。",
-            })
-        user_tool_msg = {"role": "user", "content": tool_result_blocks}
-
-        messages = [
-            {"role": "user", "content": prompt},
-            assistant_msg,
-            user_tool_msg,
-        ]
-
-        print(f"[INFO] web_search 第 {turn + 1} 轮完成")
-
-    return final_text
-
-
 def search_policies() -> list[dict]:
     """调用 Claude API + web_search 工具搜索近期政策。"""
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
-    text = _call_with_tool_loop(client, SEARCH_PROMPT)
+    response = client.messages.create(
+        model=MODEL,
+        max_tokens=4096,
+        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+        messages=[{"role": "user", "content": SEARCH_PROMPT}],
+    )
+
+    text = ""
+    for block in response.content:
+        if block.type == "text":
+            text += block.text
 
     # 解析 JSON
     text = text.strip()
