@@ -55,6 +55,50 @@ SEARCH_PROMPT = f"""今天是 {TODAY}。
 重要：你的回复必须只包含一个 JSON 数组，不要包含任何解释文字、分析或说明。如果搜索结果中有相关内容（即使发布日期不完全精确），也应该包含在输出中。直接以 [ 开头输出。"""
 
 
+def _parse_json(text: str) -> list[dict] | None:
+    """尝试从文本中解析 JSON 数组，失败返回 None。"""
+    text = text.strip()
+    if text.startswith("```"):
+        text = text.split("\n", 1)[1]
+        text = text.rsplit("```", 1)[0].strip()
+    try:
+        result = json.loads(text)
+        if isinstance(result, list):
+            return result
+    except json.JSONDecodeError:
+        pass
+    start = text.find("[")
+    end = text.rfind("]") + 1
+    if start >= 0 and end > start:
+        try:
+            result = json.loads(text[start:end])
+            if isinstance(result, list):
+                return result
+        except json.JSONDecodeError:
+            pass
+    return None
+
+
+def _extract_json_via_llm(client, raw_text: str, json_schema: str) -> list[dict]:
+    """用第二次 API 调用（无 web_search）将原始文本转为 JSON 数组。"""
+    response = client.messages.create(
+        model=MODEL,
+        system="你是一个JSON格式化工具。用户会给你一段包含搜索结果的文本，你必须将其中的信息提取并转为JSON数组输出。只输出JSON数组，以[开头，以]结尾。不要输出任何其他文字。",
+        max_tokens=8192,
+        messages=[{"role": "user", "content": f"请将以下搜索结果转为JSON数组，格式：{json_schema}\n\n---\n{raw_text}"}],
+    )
+    text = ""
+    for block in response.content:
+        if block.type == "text":
+            text += block.text
+    print(f"[DEBUG] 二次提取返回 ({len(text)} 字符): {text[:200]}")
+    result = _parse_json(text)
+    return result if result is not None else []
+
+
+JSON_SCHEMA = '[{"province":"省份","date":"YYYY-MM-DD","title":"标题","summary":"摘要","url":"链接"}]'
+
+
 def search_policies() -> list[dict]:
     """调用 Claude API + web_search 工具搜索近期政策。"""
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
@@ -62,7 +106,7 @@ def search_policies() -> list[dict]:
     response = client.messages.create(
         model=MODEL,
         system="你是一个数据采集API，只输出JSON数组。禁止输出任何解释、分析或说明文字。搜索后直接输出以[开头的JSON数组。",
-        max_tokens=4096,
+        max_tokens=8192,
         tools=[{"type": "web_search_20250305", "name": "web_search"}],
         messages=[{"role": "user", "content": SEARCH_PROMPT}],
     )
@@ -72,24 +116,12 @@ def search_policies() -> list[dict]:
         if block.type == "text":
             text += block.text
 
-    # 解析 JSON
-    print(f"[DEBUG] Claude 原始返回 ({len(text)} 字符): {text[:300]}")
-    text = text.strip()
-    if text.startswith("```"):
-        text = text.split("\n", 1)[1]
-        text = text.rsplit("```", 1)[0]
-        text = text.strip()
+    print(f"[DEBUG] Claude 原始返回 ({len(text)} 字符): {text[:500]}")
 
-    try:
-        policies = json.loads(text)
-    except json.JSONDecodeError:
-        start = text.find("[")
-        end = text.rfind("]") + 1
-        if start >= 0 and end > start:
-            policies = json.loads(text[start:end])
-        else:
-            print(f"[WARN] 无法解析 Claude 返回的 JSON，原文:\n{text[:500]}")
-            policies = []
+    policies = _parse_json(text)
+    if policies is None:
+        print("[INFO] 直接解析失败，使用二次 LLM 提取...")
+        policies = _extract_json_via_llm(client, text, JSON_SCHEMA)
 
     print(f"[INFO] 搜索到 {len(policies)} 条近期政策/新闻")
     return policies

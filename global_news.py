@@ -42,6 +42,48 @@ SEARCH_PROMPT = f"""今天是 {TODAY}。搜索 {ONE_WEEK_AGO} 至 {TODAY} 期间
 [{{"category":"医学3D打印/医学AI/AI+3D打印融合/行业融资/监管标准","region":"国家","date":"YYYY-MM-DD","title":"标题(中文)","source":"来源","summary":"摘要100字内中文","relevance":"与医疗3D打印/骨科器械/PEEK/医学影像AI的关联50字内","url":"链接"}}]"""
 
 
+def _parse_json(text: str) -> list[dict] | None:
+    text = text.strip()
+    if text.startswith("```"):
+        text = text.split("\n", 1)[1]
+        text = text.rsplit("```", 1)[0].strip()
+    try:
+        result = json.loads(text)
+        if isinstance(result, list):
+            return result
+    except json.JSONDecodeError:
+        pass
+    start = text.find("[")
+    end = text.rfind("]") + 1
+    if start >= 0 and end > start:
+        try:
+            result = json.loads(text[start:end])
+            if isinstance(result, list):
+                return result
+        except json.JSONDecodeError:
+            pass
+    return None
+
+
+def _extract_json_via_llm(client, raw_text: str, json_schema: str) -> list[dict]:
+    response = client.messages.create(
+        model=MODEL,
+        system="你是一个JSON格式化工具。用户会给你一段包含搜索结果的文本，你必须将其中的信息提取并转为JSON数组输出。只输出JSON数组，以[开头，以]结尾。不要输出任何其他文字。",
+        max_tokens=16384,
+        messages=[{"role": "user", "content": f"请将以下搜索结果转为JSON数组，格式：{json_schema}\n\n---\n{raw_text}"}],
+    )
+    text = ""
+    for block in response.content:
+        if block.type == "text":
+            text += block.text
+    print(f"[DEBUG] 二次提取返回 ({len(text)} 字符): {text[:200]}")
+    result = _parse_json(text)
+    return result if result is not None else []
+
+
+JSON_SCHEMA = '[{"category":"医学3D打印/医学AI/AI+3D打印融合/行业融资/监管标准","region":"国家","date":"YYYY-MM-DD","title":"标题(中文)","source":"来源","summary":"摘要100字内","relevance":"关联分析50字内","url":"链接"}]'
+
+
 def search_news() -> list[dict]:
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
@@ -57,22 +99,13 @@ def search_news() -> list[dict]:
     for block in response.content:
         if block.type == "text":
             text += block.text
-    print(f"[DEBUG] Claude 原始返回 ({len(text)} 字符): {text[:300]}")
-    text = text.strip()
-    if text.startswith("```"):
-        text = text.split("\n", 1)[1]
-        text = text.rsplit("```", 1)[0]
-        text = text.strip()
-    try:
-        items = json.loads(text)
-    except json.JSONDecodeError:
-        start = text.find("[")
-        end = text.rfind("]") + 1
-        if start >= 0 and end > start:
-            items = json.loads(text[start:end])
-        else:
-            print(f"[WARN] JSON解析失败:\n{text[:500]}")
-            items = []
+    print(f"[DEBUG] Claude 原始返回 ({len(text)} 字符): {text[:500]}")
+
+    items = _parse_json(text)
+    if items is None:
+        print("[INFO] 直接解析失败，使用二次 LLM 提取...")
+        items = _extract_json_via_llm(client, text, JSON_SCHEMA)
+
     print(f"[INFO] 搜索到 {len(items)} 条全球行业新闻")
     return items
 
