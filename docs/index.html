@@ -189,6 +189,109 @@ header .subtitle {
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
+/* ── 播客播放器 ── */
+.podcast-bar {
+  max-width: 1200px;
+  margin: 20px auto 0;
+  padding: 0 16px;
+}
+.podcast-player {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border-radius: 14px;
+  padding: 24px 28px;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.podcast-player .player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.podcast-player .player-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.podcast-player .player-title .icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.podcast-player .player-title h2 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+}
+.podcast-player .player-title .ep-date {
+  font-size: 13px;
+  color: #a29bfe;
+  margin-top: 2px;
+}
+.podcast-player .rss-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #ddd;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.podcast-player .rss-link:hover {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+}
+.podcast-player audio {
+  width: 100%;
+  height: 44px;
+  border-radius: 8px;
+  outline: none;
+}
+.podcast-player .ep-list {
+  margin-top: 14px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.podcast-player .ep-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 14px;
+}
+.podcast-player .ep-item:hover { background: rgba(255,255,255,0.08); }
+.podcast-player .ep-item.active { background: rgba(162,155,254,0.2); }
+.podcast-player .ep-item .ep-name { flex: 1; }
+.podcast-player .ep-item .ep-dur {
+  color: #a29bfe;
+  font-size: 13px;
+  margin-left: 12px;
+  white-space: nowrap;
+}
+.podcast-player .subscribe-hint {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #636e72;
+  text-align: center;
+}
+.podcast-player .subscribe-hint a { color: #a29bfe; text-decoration: none; }
+.podcast-player .subscribe-hint a:hover { text-decoration: underline; }
+
 footer {
   text-align: center;
   padding: 32px 16px;
@@ -212,6 +315,31 @@ footer {
   <p>医学 x 人工智能 x 3D打印</p>
   <div class="subtitle">内蒙古子殷科技有限公司 | AI 自动监测</div>
 </header>
+
+<div class="podcast-bar">
+  <div class="podcast-player" id="podcast-player">
+    <div class="player-header">
+      <div class="player-title">
+        <div class="icon">🎙</div>
+        <div>
+          <h2>政策早报·播客</h2>
+          <div class="ep-date" id="now-playing">加载中...</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <a class="rss-link" id="rss-copy" title="复制RSS订阅地址">📡 订阅播客</a>
+        <a class="rss-link" href="https://podcasts.apple.com/podcast/feed/" target="_blank" rel="noopener" title="用Apple Podcasts打开" style="display:none;" id="apple-link">🍎 Apple</a>
+      </div>
+    </div>
+    <audio id="podcast-audio" controls preload="metadata">
+      您的浏览器不支持音频播放
+    </audio>
+    <div class="ep-list" id="ep-list"></div>
+    <div class="subscribe-hint">
+      用播客App（小宇宙/Apple Podcasts/Pocket Casts）订阅RSS地址即可自动收听每期节目
+    </div>
+  </div>
+</div>
 
 <div class="tabs" id="tabs"></div>
 
@@ -400,8 +528,76 @@ async function loadAllBadges() {
   await Promise.all(promises);
 }
 
+// ── 播客播放器 ──
+const RSS_URL = 'feed.xml';
+const FEED_FULL_URL = 'https://gljc1117.github.io/3d-print-policy-briefing/feed.xml';
+
+async function initPodcast() {
+  try {
+    const resp = await fetch(RSS_URL + '?t=' + Date.now());
+    const text = await resp.text();
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(text, 'text/xml');
+    const items = xml.querySelectorAll('item');
+
+    if (items.length === 0) {
+      document.getElementById('now-playing').textContent = '暂无节目';
+      return;
+    }
+
+    const episodes = [];
+    items.forEach(item => {
+      const title = item.querySelector('title')?.textContent || '';
+      const url = item.querySelector('enclosure')?.getAttribute('url') || '';
+      const duration = item.querySelector('duration')?.textContent || '';
+      const pubDate = item.querySelector('pubDate')?.textContent || '';
+      episodes.push({ title, url, duration, pubDate });
+    });
+
+    // 渲染节目列表
+    const listEl = document.getElementById('ep-list');
+    const audioEl = document.getElementById('podcast-audio');
+    const nowEl = document.getElementById('now-playing');
+
+    episodes.forEach((ep, i) => {
+      const div = document.createElement('div');
+      div.className = 'ep-item' + (i === 0 ? ' active' : '');
+      div.innerHTML = `<span class="ep-name">${esc(ep.title)}</span><span class="ep-dur">${ep.duration || ''}</span>`;
+      div.addEventListener('click', () => {
+        audioEl.src = ep.url;
+        audioEl.play();
+        nowEl.textContent = ep.title;
+        listEl.querySelectorAll('.ep-item').forEach(el => el.classList.remove('active'));
+        div.classList.add('active');
+      });
+      listEl.appendChild(div);
+    });
+
+    // 默认加载最新一期
+    audioEl.src = episodes[0].url;
+    nowEl.textContent = episodes[0].title;
+
+  } catch (e) {
+    document.getElementById('now-playing').textContent = '节目加载失败';
+    console.error('Podcast load error:', e);
+  }
+}
+
+// RSS 订阅按钮 - 复制地址
+document.getElementById('rss-copy').addEventListener('click', async (e) => {
+  e.preventDefault();
+  try {
+    await navigator.clipboard.writeText(FEED_FULL_URL);
+    e.target.textContent = '✅ 已复制!';
+    setTimeout(() => { e.target.innerHTML = '📡 订阅播客'; }, 2000);
+  } catch {
+    prompt('复制RSS订阅地址：', FEED_FULL_URL);
+  }
+});
+
 // Init
 initTabs();
+initPodcast();
 loadAllBadges().then(() => {
   switchTab('briefing');
 });

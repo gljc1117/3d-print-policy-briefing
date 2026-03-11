@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>子殷科技·政策早报</title>
+  <link>https://gljc1117.github.io/3d-print-policy-briefing</link>
+  <atom:link href="https://gljc1117.github.io/3d-print-policy-briefing/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>内蒙古子殷科技有限公司政策与行业动态播客简报。AI 自动监测医保政策、招投标、科技厅、工信厅、发改委、财政厅、教育厅及全球医疗3D打印/PEEK/AI行业新闻。</description>
+  <language>zh-cn</language>
+  <lastBuildDate>Wed, 11 Mar 2026 00:00:00 +0800</lastBuildDate>
+  <itunes:author>子殷科技</itunes:author>
+  <itunes:summary>子殷科技政策与行业动态AI播客</itunes:summary>
+  <itunes:owner>
+    <itunes:name>子殷科技</itunes:name>
+    <itunes:email>liyingxi49@gmail.com</itunes:email>
+  </itunes:owner>
+  <itunes:category text="Business">
+    <itunes:category text="Management"/>
+  </itunes:category>
+  <itunes:explicit>false</itunes:explicit>
+  <itunes:type>episodic</itunes:type>
+  
+    <item>
+      <title>子殷科技政策早报 2026-03-11</title>
+      <description>2026-03-11 子殷科技政策与行业动态播客简报，涵盖医保政策、招投标、科技厅、工信厅、发改委、财政厅、教育厅及全球新闻。</description>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0800</pubDate>
+      <enclosure url="https://gljc1117.github.io/3d-print-policy-briefing/audio/podcast-2026-03-11.mp3" length="11972483" type="audio/mpeg"/>
+      <itunes:duration>00:12:28</itunes:duration>
+      <itunes:episode>20260311</itunes:episode>
+      <guid isPermaLink="true">https://gljc1117.github.io/3d-print-policy-briefing/audio/podcast-2026-03-11.mp3</guid>
+    </item>
+</channel>
+</rss>
