@@ -68,38 +68,61 @@ def apify_google_search(queries: list[str], max_results_per_query: int = 5) -> l
 
 
 def _parse_json(text: str) -> list[dict] | None:
-    """尝试从文本中解析 JSON 数组。"""
+    """尝试从文本中解析 JSON 数组，支持截断修复。"""
     text = text.strip()
     if text.startswith("```"):
         text = text.split("\n", 1)[1]
         text = text.rsplit("```", 1)[0].strip()
+
+    # 1. 直接解析
     try:
         result = json.loads(text)
         if isinstance(result, list):
             return result
     except json.JSONDecodeError as e:
         print(f"[DEBUG] json.loads 失败: {e}")
+
+    # 2. 提取 [...] 子串解析
     start = text.find("[")
-    end = text.rfind("]") + 1
-    if start >= 0 and end > start:
+    if start < 0:
+        return None
+
+    end = text.rfind("]")
+    if end > start:
         try:
-            result = json.loads(text[start:end])
+            result = json.loads(text[start:end + 1])
             if isinstance(result, list):
                 return result
         except json.JSONDecodeError as e:
             print(f"[DEBUG] 子串解析也失败: {e}")
-            # 尝试修复截断的 JSON：找到最后一个完整的 },] 并截断
-            chunk = text[start:end]
-            last_complete = chunk.rfind("},")
-            if last_complete > 0:
-                fixed = chunk[:last_complete + 1] + "]"
-                try:
-                    result = json.loads(fixed)
-                    if isinstance(result, list):
-                        print(f"[INFO] 截断修复成功，恢复 {len(result)} 条")
-                        return result
-                except json.JSONDecodeError:
-                    pass
+
+    # 3. 截断修复：找到最后一个完整的 } 后截断为数组
+    chunk = text[start:]
+    # 尝试多种截断点
+    for sep in ["}\n  ,", "},\n", "},", "}\n"]:
+        last_complete = chunk.rfind(sep)
+        if last_complete > 0:
+            fixed = chunk[:last_complete + 1] + "]"
+            try:
+                result = json.loads(fixed)
+                if isinstance(result, list):
+                    print(f"[INFO] 截断修复成功（sep={repr(sep)}），恢复 {len(result)} 条")
+                    return result
+            except json.JSONDecodeError:
+                continue
+
+    # 4. 最后尝试：逐个 } 往回找
+    for i in range(len(chunk) - 1, 0, -1):
+        if chunk[i] == "}":
+            fixed = chunk[:i + 1] + "]"
+            try:
+                result = json.loads(fixed)
+                if isinstance(result, list) and len(result) > 0:
+                    print(f"[INFO] 逐字符截断修复成功，恢复 {len(result)} 条")
+                    return result
+            except json.JSONDecodeError:
+                continue
+
     return None
 
 
