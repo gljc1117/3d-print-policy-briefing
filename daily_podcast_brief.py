@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 """
 子殷科技·每日政策播客简报（双主播对话版）
-数据 → Claude 生成双人对话文稿 → Edge TTS 双声道合成 → 拼接输出
+数据 → Claude 生成双人对话文稿 → Fish Audio S2 本地 TTS → 拼接输出
 """
 
-import asyncio
 import json
 import os
 import re
 import sys
+import time
 from datetime import datetime
 from pathlib import Path
 
 import anthropic
-import edge_tts
+import httpx
 
 # ──────────────────────────── 配置 ────────────────────────────
 
@@ -24,9 +24,10 @@ TODAY = datetime.now().strftime("%Y-%m-%d")
 DATA_DIR = Path(__file__).parent / "docs" / "data"
 OUTPUT_DIR = Path(__file__).parent / "audio"
 
-# 双主播语音
-HOST_A_VOICE = "zh-CN-XiaoxiaoNeural"   # 女声（晓晓）— 主持人A
-HOST_B_VOICE = "zh-CN-YunxiNeural"      # 男声（云希）— 主持人B
+# Fish Audio 本地服务（4090 台式机）
+FISH_TTS_SERVER = os.environ.get("FISH_TTS_SERVER", "http://192.168.3.95:8080")
+
+# 双主播名称
 HOST_A_NAME = "晓晓"
 HOST_B_NAME = "云希"
 
@@ -156,29 +157,110 @@ def generate_podcast_script(data: dict) -> list[dict]:
     return dialogues
 
 
-# ──────────────────── Stage 3: TTS 合成 ──────────────────────
+# ──────────────── Stage 3: Fish Audio TTS 合成 ───────────────
 
 
-async def synthesize_segment(text: str, voice: str, output_path: str):
-    """合成单段语音。"""
-    communicate = edge_tts.Communicate(text, voice, rate="+5%")
-    await communicate.save(output_path)
+def fish_tts(text: str, output_path: str, seed: int = 0) -> bool:
+    """调用 Fish Audio 本地服务合成单段语音。
+
+    Args:
+        text: 要合成的文本
+        output_path: 输出 WAV 文件路径
+        seed: 随机种子（不同种子 = 不同音色，同种子 = 一致音色）
+    Returns:
+        是否成功
+    """
+    payload = {
+        "data": [
+            text,   # Input Text
+            "",     # Reference ID
+            None,   # Reference Audio
+            "",     # Reference Text
+            0,      # Max tokens per batch
+            200,    # Iterative Prompt Length
+            0.7,    # Top-P
+            1.2,    # Repetition Penalty
+            0.7,    # Temperature
+            seed,   # Seed（固定种子保持音色一致）
+            "on",   # Memory Cache
+        ]
+    }
+
+    try:
+        # 提交请求
+        r = httpx.post(
+            f"{FISH_TTS_SERVER}/gradio_api/call/partial",
+            json=payload,
+            timeout=30,
+        )
+        r.raise_for_status()
+        event_id = r.json()["event_id"]
+
+        # SSE 读取结果
+        audio_url = None
+        with httpx.stream(
+            "GET",
+            f"{FISH_TTS_SERVER}/gradio_api/call/partial/{event_id}",
+            timeout=180,
+        ) as resp:
+            for line in resp.iter_lines():
+                if line.startswith("data:"):
+                    data = json.loads(line[5:].strip())
+                    if isinstance(data, list) and len(data) > 0:
+                        if isinstance(data[0], dict) and "url" in data[0]:
+                            audio_url = data[0]["url"]
+                            break
+
+        if not audio_url:
+            print(f"[WARN] Fish TTS 无音频返回")
+            return False
+
+        # 下载音频
+        audio_resp = httpx.get(audio_url, timeout=30)
+        with open(output_path, "wb") as f:
+            f.write(audio_resp.content)
+        return True
+
+    except Exception as e:
+        print(f"[ERROR] Fish TTS 失败: {e}")
+        return False
 
 
-async def synthesize_podcast(dialogues: list[dict], output_path: str):
+def synthesize_podcast(dialogues: list[dict], output_path: str):
     """逐段合成并用 ffmpeg 拼接。"""
     tmp_dir = OUTPUT_DIR / "tmp_segments"
     tmp_dir.mkdir(exist_ok=True)
 
+    # 用不同种子区分男女声
+    SEED_A = 42    # 女声种子
+    SEED_B = 137   # 男声种子
+
     segment_files = []
+    failed = 0
 
     for i, d in enumerate(dialogues):
-        voice = HOST_A_VOICE if d["speaker"] == "A" else HOST_B_VOICE
-        seg_path = str(tmp_dir / f"seg_{i:04d}.mp3")
+        seed = SEED_A if d["speaker"] == "A" else SEED_B
+        name = HOST_A_NAME if d["speaker"] == "A" else HOST_B_NAME
+        seg_path = str(tmp_dir / f"seg_{i:04d}.wav")
 
-        print(f"  [{i+1}/{len(dialogues)}] {HOST_A_NAME if d['speaker']=='A' else HOST_B_NAME}: {d['text'][:30]}...")
-        await synthesize_segment(d["text"], voice, seg_path)
-        segment_files.append(seg_path)
+        print(f"  [{i+1}/{len(dialogues)}] {name}: {d['text'][:30]}...")
+        ok = fish_tts(d["text"], seg_path, seed=seed)
+
+        if ok and os.path.getsize(seg_path) > 1000:
+            segment_files.append(seg_path)
+        else:
+            failed += 1
+            print(f"  [SKIP] 第{i+1}段合成失败")
+
+        # 避免请求过快
+        time.sleep(0.3)
+
+    if not segment_files:
+        print("[ERROR] 没有成功合成任何音频段")
+        return
+
+    if failed > 0:
+        print(f"[WARN] {failed}/{len(dialogues)} 段合成失败")
 
     # 生成 ffmpeg 拼接列表
     list_path = str(tmp_dir / "segments.txt")
@@ -191,7 +273,7 @@ async def synthesize_podcast(dialogues: list[dict], output_path: str):
         f"ffmpeg -y -f concat -safe 0 -i '{list_path}' "
         f"-ar 44100 -ab 128k -ac 1 '{output_path}' 2>&1"
     )
-    result = os.popen(cmd).read()
+    os.popen(cmd).read()
 
     # 清理临时文件
     for seg in segment_files:
@@ -210,7 +292,17 @@ async def synthesize_podcast(dialogues: list[dict], output_path: str):
 
 
 def main():
-    print(f"[INFO] === 子殷科技·政策播客简报 === {TODAY}")
+    print(f"[INFO] === 子殷科技·政策播客简报（Fish Audio） === {TODAY}")
+    print(f"[INFO] TTS 服务: {FISH_TTS_SERVER}")
+
+    # 0. 检查 Fish TTS 服务可用
+    try:
+        r = httpx.get(f"{FISH_TTS_SERVER}/config", timeout=5)
+        r.raise_for_status()
+        print(f"[INFO] Fish Audio 服务连接正常")
+    except Exception as e:
+        print(f"[ERROR] 无法连接 Fish Audio 服务 ({FISH_TTS_SERVER}): {e}")
+        sys.exit(1)
 
     # 1. 加载数据
     data = load_all_data()
@@ -228,8 +320,8 @@ def main():
 
     # 3. TTS 合成
     audio_path = str(OUTPUT_DIR / f"podcast-{TODAY}.mp3")
-    print(f"[INFO] 开始合成 {len(dialogues)} 段语音...")
-    asyncio.run(synthesize_podcast(dialogues, audio_path))
+    print(f"[INFO] 开始合成 {len(dialogues)} 段语音（Fish Audio 本地 4090）...")
+    synthesize_podcast(dialogues, audio_path)
 
     # 4. 播放时长
     duration_cmd = f"ffprobe -i '{audio_path}' -show_entries format=duration -v quiet -of csv='p=0'"
