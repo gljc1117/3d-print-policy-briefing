@@ -1,236 +1,174 @@
 {
-  "updated": "2026-03-12",
-  "count": 23,
+  "updated": "2026-03-16",
+  "count": 21,
   "items": [
     {
-      "province": "上海",
-      "date": "2025-10-30",
-      "title": "上海交通大学\"交大之星\"计划\"医工交叉研究基金\"",
-      "department": "上海交通大学",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "医学院、附属医院的临床医生、科研人员与学校相关院系科教人员联合申报医工交叉研究项目",
-      "url": "https://www.sjtu.edu.cn/tg/20251030/215997.html"
-    },
-    {
-      "province": "内蒙古",
-      "date": "2025-12-01",
-      "title": "2026年中央引导地方科技发展专项资金项目征集",
-      "department": "内蒙古自治区科学技术厅、财政厅",
-      "deadline": "2025-12-31",
-      "funding": "未指定",
-      "summary": "申报单位为内蒙古自治区内注册的高等院校、科研院所、企业等，支持产学研合作",
-      "url": "http://kjt.nmg.gov.cn/kjdt/tzgg/202512/t20251201_2826228.html"
-    },
-    {
-      "province": "内蒙古",
-      "date": "2025-09-25",
-      "title": "2026年创新能力提升计划（科技合作领域）项目申报",
-      "department": "内蒙古自治区科学技术厅",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持科研院所、高等院校、企事业单位开展产学研合作项目申报",
-      "url": "http://kjt.nmg.gov.cn/kjdt/tzgg/202509/t20250925_2795655.html"
-    },
-    {
       "province": "四川",
-      "date": "2025-09-18",
-      "title": "四川省科学技术厅2026年省院省校科技合作重点项目申报",
-      "department": "四川省科学技术厅",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持高等院校、科研院所、医疗卫生机构开展科技合作研发项目",
-      "url": "https://sro.swjtu.edu.cn/info/1123/27895.htm"
+      "date": "2026-01-26",
+      "title": "四川大学成功举办2026医工领域产教融合创新发展研讨会",
+      "department": "四川大学",
+      "summary": "会议汇聚政府部门、顶尖高校、产业园区领导专家，分为主论坛与国家医学攻关产教融合创新平台联盟工作会两大版块，共商医工融合发展大计。",
+      "url": "https://wcums.scu.edu.cn/info/1025/3768.htm"
+    },
+    {
+      "province": "湖北",
+      "date": "2026-01-22",
+      "title": "湖北省医工交叉融合创新产业联盟揭牌成立",
+      "department": "湖北省经信厅、卫健委、药监局",
+      "summary": "在湖北省经信厅、卫健委、药监局指导下组建的省级医工融合创新转化平台，汇聚医疗机构、高校等机构，推进医工交叉融合创新。",
+      "url": "https://www.chinanews.com/cj/2026/01-22/10556924.shtml"
+    },
+    {
+      "province": "湖北",
+      "date": "2026-01-23",
+      "title": "协和医院医工交叉产业专场对接活动成功举办",
+      "department": "湖北省教育厅",
+      "summary": "19项硬核成果集中路演，300余位产投专家参与，汇聚医疗机构、高校等在医工交叉领域的创新成果展示与产业对接。",
+      "url": "http://jxt.hubei.gov.cn/bmdt/rdjj/202601/t20260126_5863085.shtml"
     },
     {
       "province": "上海",
-      "date": "2025-10-27",
-      "title": "2026年度沪滇科技协同创新项目申报",
-      "department": "上海市科学技术委员会",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "上海方和云南方的申报单位需联合申报科技协同创新项目",
-      "url": "https://www.rjh.com.cn/2018RJPortal/doc/2025/10/27/72167.shtml"
+      "date": "2026-01-31",
+      "title": "华东理工大学医工融合创新中心启动仪式暨2026年度学术会议",
+      "department": "华东理工大学",
+      "summary": "医工融合创新中心启动，汇聚上海申康医院发展中心、长三角国家技术转移中心等机构，探讨医工融合创新发展方向。",
+      "url": "https://www.ecust.edu.cn/2026/0131/c785a197433/page.htm"
     },
     {
-      "province": "重庆",
-      "date": "2025-12-03",
-      "title": "重庆市智慧医疗装备医工融合创新项目申报",
-      "department": "重庆市发改委",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持医工融合创新项目申报，鼓励产学研合作，优先推荐申报教育部校企联合项目",
-      "url": "https://jjxxw.cq.gov.cn/zwgk_213/zcwj/qtwj/202512/W020251203407843885970.doc"
+      "province": "福建",
+      "date": "2026-01-28",
+      "title": "福州大学医工交叉研究院2025年秋季学期期末工作部署会议",
+      "department": "福州大学医工交叉研究院",
+      "summary": "医工交叉研究院召开工作部署会议，推进医工交叉领域的人才培养与科研创新工作。",
+      "url": "https://iime.fzu.edu.cn/info/1020/1450.htm"
     },
     {
-      "province": "全国",
-      "date": "2025-12-12",
-      "title": "中国高校产学研创新基金申报",
-      "department": "教育部科技发展中心",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持高校产学研创新项目申报，涵盖医工交叉、生物医学工程等领域",
-      "url": "https://www.fdsm.fudan.edu.cn/aboutus/fdsm1556950803136"
+      "province": "陕西",
+      "date": "2026-03-14",
+      "title": "西安交通大学第十一届教代会暨工代会五次会议召开",
+      "department": "西安交通大学",
+      "summary": "二附院呼吸与危重症医学科主任表示深入推进医工交叉与产学研融合，为学校创建世界一流大学做贡献。",
+      "url": "https://news.xjtu.edu.cn/info/1219/229927.htm"
     },
     {
-      "province": "深圳",
-      "date": "2026-02-04",
-      "title": "2026年深圳市医学研究专项资金项目申请指南",
-      "department": "深圳市科技部门",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持医学研究专项项目申请，涵盖医学影像、生物医学工程等方向",
-      "url": "https://smart.org.cn/uploads/files/2026/0204/4hxdy37esDZKOxcHm5G9XQJ2ypenFYlwrFYycNxc.pdf"
+      "province": "河南",
+      "date": "2026-03-09",
+      "title": "河南省教育系统干部师生热议全国两会教育话题",
+      "department": "河南省教育厅",
+      "summary": "医工交叉领域科研工作者表示将把全国两会精神融入日常教学科研，积极把人工智能融入新医科建设。",
+      "url": "https://jyt.henan.gov.cn/2026/03-09/3332539.html"
     },
     {
-      "province": "北京",
-      "date": "2026-01-15",
-      "title": "2026年度北京市自然科学基金交叉融合重点项目申请",
-      "department": "北京市科委",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持医工交叉、生物医学工程等交叉融合研究项目申请",
-      "url": "https://kw.beijing.gov.cn/zwgk/zcwj/202601/W020260115530835850315.docx"
+      "province": "湖北",
+      "date": "2026-03-06",
+      "title": "湖北省药品监督管理局印发医疗器械产业高质量发展支持措施",
+      "department": "湖北省药品监督管理局",
+      "summary": "印发支持医疗器械产业高质量发展的若干措施，推进医疗器械领域的产教融合与校企合作。",
+      "url": "https://www.nmpa.gov.cn/directory/web/nmpa/zhuanti/zt2025/shenhua/shzcwj/20260306101217145.html"
     },
     {
-      "province": "北京",
-      "date": "2026-01-14",
-      "title": "北京市新技术新产品新服务认定申请",
-      "department": "中关村科技园区管理委员会",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持医疗器械、生物医学工程等领域的企业和高校申请新产品认定",
-      "url": "https://kw.beijing.gov.cn/zwgk/zcwj/202601/t20260114_4430086.html"
-    },
-    {
-      "province": "湖南",
-      "date": "2025-12-31",
-      "title": "2026年度湖南省重点研发计划项目申报",
-      "department": "湖南省科学技术厅、财政厅",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持创新药、医疗器械、生物医学工程等领域重点研发项目申报",
-      "url": "https://kjt.hunan.gov.cn/kjt/xmxx/xmsb/202512/t20251231_33907863.html"
-    },
-    {
-      "province": "山东",
-      "date": "2026-02-24",
-      "title": "2026年度山东省创新药物和高端医疗器械申报工作公布",
-      "department": "山东省科学技术厅",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持创新药物、高端医疗器械研发项目申报，鼓励产学研合作",
-      "url": "http://kjt.shandong.gov.cn/art/2026/2/24/art_13360_10323758.html"
+      "province": "辽宁",
+      "date": "2026-01-01",
+      "title": "大连理工大学与朝阳市中心医院联合开展2026年度医工交叉项目",
+      "department": "大连理工大学",
+      "summary": "学校与朝阳市中心医院联合开展医工交叉项目，推动医工融合、服务朝阳生命健康产业发展。",
+      "url": "https://scidep.dlut.edu.cn/cxyycgzh.htm"
     },
     {
       "province": "山东",
       "date": "2026-02-11",
       "title": "山东省高新区和高等院校联动发展实施方案",
-      "department": "山东省科学技术厅",
-      "deadline": "2026-12-31",
-      "funding": "未指定",
-      "summary": "推动高新区与高校的产学研合作，支持医工交叉、生物医药等领域联动发展",
+      "department": "山东省科技厅",
+      "summary": "构建高新区与高等院校联动机制，坚持产业牵引、优势协同、互利共赢，实现决策共商、项目共研、人才共用、利益共享。",
       "url": "http://kjt.shandong.gov.cn/art/2026/2/11/art_103585_10323679.html"
     },
     {
-      "province": "上海",
-      "date": "2026-01-27",
-      "title": "2026年度国家级继续医学教育推荐项目申报",
-      "department": "上海市卫生健康委",
-      "deadline": "2026-02-03",
-      "funding": "未指定",
-      "summary": "申报医学教育项目，包括医学影像AI、医工交叉等领域",
-      "url": "https://shanghaicme.com/shcme/upload//attach/f97be422-ed9c-4f04-a9cc-fe2ed3fd8408.pdf"
-    },
-    {
-      "province": "河南",
-      "date": "2026-02-09",
-      "title": "2026年全省医学临床教学基地建设申报备案",
-      "department": "河南省教育厅、卫生健康委",
-      "deadline": "2026-03-31",
-      "funding": "未指定",
-      "summary": "支持职业院校医学临床教学和实习基地建设申报",
-      "url": "http://m.jyt.henan.gov.cn/2026/02-09/3325081.html"
-    },
-    {
-      "province": "河南",
-      "date": "2025-11-26",
-      "title": "2026年度河南省校企协同创新项目申报",
-      "department": "河南省教育厅",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持高校与企业产学研合作，依托协同创新中心、校企研发中心进行项目申报",
-      "url": "https://www.jyvtc.edu.cn/kwc/544645/1281197/2025120114523085425.pdf"
-    },
-    {
-      "province": "全国",
-      "date": "2025-08-12",
-      "title": "2026年上海交通大学\"医工交叉平台\"博士研究生招生",
-      "department": "上海交通大学",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "招收医工交叉平台专项博士研究生，实行双导师制，涵盖医学与工程交叉领域",
-      "url": "https://www.lingboyan.com/academicinfo-2-2079"
-    },
-    {
-      "province": "安徽",
-      "date": "2024-11-06",
-      "title": "2020年安徽省重点研究与开发计划项目申报（3D打印）",
-      "department": "安徽省科技部门",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "重点支持增材制造（3D打印）相关工艺、装备和应用研发项目申报",
-      "url": "https://www.hf.cas.cn/lmjx/glbm/kyghc/kyc_kyghc/tzgg/202411/W020241106518587302967.pdf"
-    },
-    {
-      "province": "全国",
-      "date": "2025-12-02",
-      "title": "医学学科国家自然科学基金申报动员",
-      "department": "郑州大学",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持医学学科申报国家自然科学基金，包括医学影像AI、生物医学工程等方向",
-      "url": "https://www5.zzu.edu.cn/xbx/info/1221/2302.htm"
-    },
-    {
-      "province": "辽宁",
-      "date": "2025-08-22",
-      "title": "辽宁省教育厅高校基本科研项目申报",
-      "department": "辽宁省教育厅",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持人工智能在医学影像智能诊断的应用研究项目申报",
-      "url": "https://www.dmuzs.edu.cn/jsj/info/1046/2934.htm"
-    },
-    {
-      "province": "黑龙江",
-      "date": "2026-02-14",
-      "title": "黑龙江省人工智能赋能高校发展措施",
-      "department": "黑龙江省政府",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持医学影像智能辅助诊断等医工交叉领域创新项目",
-      "url": "https://www.hlj.gov.cn/hlj/c108372/202602/31915429/files/%E9%BB%91%E6%94%BF%E8%A7%84-1.docx"
-    },
-    {
-      "province": "全国",
-      "date": "2025-02-14",
-      "title": "广东省首批\"人工智能+高等教育\"应用场景典型案例",
-      "department": "广东省教育部门",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "\"医学智能影像教研平台\"融合人工智能技术的创新教学项目，涵盖医学影像AI应用",
-      "url": "https://www.sizhengshijian.cn/a/sy_sjdt/250214/581425.shtml"
-    },
-    {
-      "province": "全国",
-      "date": "2026-02-05",
-      "title": "山东省人工智能赋能高校科学研究高质量发展措施",
+      "province": "山东",
+      "date": "2026-02-10",
+      "title": "山东省教育厅推进纺织与医学交叉研究创新",
       "department": "山东省教育厅",
-      "deadline": "未指定",
-      "funding": "未指定",
-      "summary": "支持人工智能在医学影像、医学研究等领域的应用开发",
-      "url": "http://edu.shandong.gov.cn/art/2026/2/5/art_107055_10345555.html"
+      "summary": "依托省部共建协同创新中心，组建纺织+医学交叉研究团队，成立生物医学工程等交叉研究平台。",
+      "url": "http://edu.shandong.gov.cn/art/2026/2/10/art_11972_10345287.html"
+    },
+    {
+      "province": "河北",
+      "date": "2026-02-01",
+      "title": "河北省生物医学工程学会2026年工作会议暨学术交流会",
+      "department": "河北省科协",
+      "summary": "省科协支持学会创新发展，搭建医疗器械协同创新平台，推进生物医学工程学科建设与人才培养。",
+      "url": "https://www.hbast.org.cn/detail.thtml?id=216651"
+    },
+    {
+      "province": "浙江",
+      "date": "2025-12-17",
+      "title": "2025年中国高校产学研创新基金专项课题申报（AI医学应用方向）",
+      "department": "教育部高等学校科学研究发展中心",
+      "summary": "申报2025年产学研创新基金，研究AI在医学影像、疾病预测、个性化治疗、药物研发等应用，截止2025年12月17日。",
+      "url": "https://www.zgcsswdx.cn/info/23973.html"
+    },
+    {
+      "province": "上海",
+      "date": "2025-04-10",
+      "title": "聚焦AI赋能医学影像专业建设沪上高校深化产学研合作",
+      "department": "上海健康医学院",
+      "summary": "沪上高校深化产学研合作，推进AI赋能医学影像专业建设，培养医学与工程交叉融合人才。",
+      "url": "https://www.sumhs.edu.cn/_t338/5a/a7/c6720a285351/page.psp"
+    },
+    {
+      "province": "吉林",
+      "date": "2025-05-25",
+      "title": "一脉阳光集团与长春工业大学签署战略合作协议",
+      "department": "长春工业大学",
+      "summary": "以产教融合、资源共享为核心，聚焦医学影像大数据、人工智能、软件工程等领域，推动校企深度联动与人才培养协同发展。",
+      "url": "http://jx.news.cn/20250525/7b53f2da4239435ca772b13ac7f82db3/c.html"
+    },
+    {
+      "province": "河南",
+      "date": "2025-09-23",
+      "title": "郑州大学生物医学工程创新人才拔尖班招生",
+      "department": "郑州大学",
+      "summary": "联合清华、复旦、上海交大等海内外顶尖高校协同培养生物医学工程创新人才，实现产学研深度融合。",
+      "url": "https://www.zzu.edu.cn/info/1442/86753.htm"
+    },
+    {
+      "province": "广东",
+      "date": "2025-05-10",
+      "title": "广东省生物医学工程学会2025年学术活动与医工融合创新",
+      "department": "广东省生物医学工程学会",
+      "summary": "由广东医科大学、松山湖医工融合创新中心等共同承办，推进生物医学工程人才培养与医工交叉融合。",
+      "url": "http://gdsbme.com/"
+    },
+    {
+      "province": "江苏",
+      "date": "2025-12-16",
+      "title": "中国药科大学2026年面向港澳台地区招收研究生（生物医学工程方向）",
+      "department": "中国药科大学",
+      "summary": "设置生物医学工程博士学位授权点，培养药学、中药学等与医工交叉融合的高层次人才。",
+      "url": "https://yjszs.cpu.edu.cn/86/7a/c10895a231034/pagem.htm"
+    },
+    {
+      "province": "四川",
+      "date": "2025-12-01",
+      "title": "四川大学生物治疗全国重点实验室2026年普通招考博士研究生",
+      "department": "四川大学",
+      "summary": "2026年计划招收博士研究生139人，开展生物医学工程与生物治疗的跨学科培养。",
+      "url": "https://sklb.scu.edu.cn/detail.html?type=noticeDetail&id=342"
+    },
+    {
+      "province": "上海",
+      "date": "2025-12-05",
+      "title": "上海交通大学郝永强教授：骨科与工科结合的医工交叉融合",
+      "department": "上海交通大学",
+      "summary": "创建基于3D打印的骨肿瘤精准切除与个性化重建模式，自主研发个性化骨关节假体，推进医工结合型人才培养。",
+      "url": "https://news.sjtu.edu.cn/jdyw/20251205/217703.html"
+    },
+    {
+      "province": "上海",
+      "date": "2025-12-29",
+      "title": "上海交通大学王金武教授：康复设备国产化与医工融合创新",
+      "department": "上海交通大学",
+      "summary": "开发3D打印个性化膝关节矫形器，牵头编写国内首个3D打印矫形器通用技术标准，推进医工交叉应用。",
+      "url": "https://news.sjtu.edu.cn/jdyw/20251229/218492.html"
     }
   ]
 }
