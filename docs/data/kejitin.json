@@ -1,16 +1,206 @@
 {
-  "updated": "2026-03-16",
-  "count": 1,
+  "updated": "2026-03-17",
+  "count": 20,
   "items": [
     {
-      "province": "天津",
-      "date": "2025-12-16",
-      "title": "关于3D打印智造总部基地项目遴选方案的公示",
-      "department": "天津市科技局",
-      "deadline": "未指定",
+      "province": "上海",
+      "date": "2026-01-23",
+      "title": "2026年度上海市生物医药重点产品和合同生产项目",
+      "department": "上海市科技委员会",
+      "deadline": "2026-01-23",
       "funding": "未指定",
-      "summary": "组织河东区企业事业单位申报2026年天津市知识产权资助项目，征集天津市2026年度生物医药领域科技计划项目需求。",
-      "url": "https://www.chacewang.com/newsdetail/news936677.html"
+      "summary": "征集生物医药重点产品项目和合同生产项目申报，重点支持创新药、医疗器械等生物医药产品",
+      "url": "https://stcsm.sh.gov.cn/zwgk/kyjhxm/xmsb/20260123/07561ce9723048b5a09e99901d57a532.html"
+    },
+    {
+      "province": "上海",
+      "date": "2026-01-21",
+      "title": "2026年度上海市生物医药创新产品攻关项目",
+      "department": "上海市科技委员会",
+      "deadline": "2026-01-21",
+      "funding": "单个产品单个研发阶段市级有额度限制",
+      "summary": "申报创新药I期、II期研发、细胞治疗、创新医疗器械研发项目，需填写相关项目承诺书",
+      "url": "https://www.sh-hitech.com/kjcx/21498.html"
+    },
+    {
+      "province": "上海",
+      "date": "2025-07-01",
+      "title": "国家重点研发计划\"诊疗装备与生物医用材料\"重点专项项目",
+      "department": "上海市科技委员会",
+      "deadline": "2025-08-11",
+      "funding": "国家重点研发计划",
+      "summary": "申报涉及诊疗装备、生物医用材料、医疗器械等研发项目，包括3D打印医疗器械等方向",
+      "url": "https://stcsm.sh.gov.cn/zwgk/kyjhxm/xmsb/20250701/572bc29b307e4079a296bae29f5747f5.html"
+    },
+    {
+      "province": "上海",
+      "date": "2026-03-17",
+      "title": "2026年TCT亚洲3D打印展会",
+      "department": "展会主办方",
+      "deadline": "2026-03-17",
+      "funding": "未指定",
+      "summary": "2026年3月17-19日在国家会展中心（上海）举办，汇聚3D打印、增材制造、医疗器械等产业交流平台",
+      "url": "https://www.tctasia.cn/asia.shtml"
+    },
+    {
+      "province": "上海",
+      "date": "2025-07-14",
+      "title": "上海市促进医疗卫生机构科技成果转化操作细则",
+      "department": "上海市科技委员会",
+      "deadline": "未指定",
+      "funding": "科技成果转化相关",
+      "summary": "指导医疗卫生机构开展科技成果转化，包括药物、医疗器械、诊疗新技术等的研发转化",
+      "url": "https://www.sh-italent.com/Article/202507/202507140008.shtml"
+    },
+    {
+      "province": "天津",
+      "date": "2019-04-18",
+      "title": "2019年天津市创新药物和医疗器械科技重大专项项目",
+      "department": "天津市科技局",
+      "deadline": "2019-04-18",
+      "funding": "科技重大专项",
+      "summary": "征集创新药物和医疗器械科技项目，通过审查的项目共计39项",
+      "url": "https://xmgl.kxjs.tj.gov.cn/publish/html/1561107383738.html"
+    },
+    {
+      "province": "内蒙古",
+      "date": "2025-09-25",
+      "title": "2026年创新能力提升计划（科技合作领域）项目申报",
+      "department": "内蒙古自治区科技厅",
+      "deadline": "2025-09-25",
+      "funding": "创新能力提升计划",
+      "summary": "面向内蒙古自治区内注册的科研院所、高等院校、企事业单位等科技合作项目申报",
+      "url": "http://kjt.nmg.gov.cn/kjdt/tzgg/202509/t20250925_2795655.html"
+    },
+    {
+      "province": "四川",
+      "date": "2025-12-31",
+      "title": "2026年度湖南省重点研发计划项目",
+      "department": "湖南省科技厅",
+      "deadline": "2025-12-31",
+      "funding": "省重点研发计划",
+      "summary": "申报创新药、医疗器械等生物医药领域项目，需明确填写研发进度和考核节点",
+      "url": "https://kjt.hunan.gov.cn/kjt/xxgk/tzgg/tzgg_1/202512/t20251231_33885585.html"
+    },
+    {
+      "province": "安徽",
+      "date": "2026-02-12",
+      "title": "中国（安徽）自由贸易试验区合肥片区生物医药产业政策支持",
+      "department": "安徽省科技厅、工业和信息化厅、医保局、药监局",
+      "deadline": "2026-02-12",
+      "funding": "产业发展支持",
+      "summary": "支持创新药品、医疗器械企业发展，收到97家药品和医疗器械企业申报产品163个",
+      "url": "http://fbh.anhuinews.com/fbh/202602/t20260212_9095065.html"
+    },
+    {
+      "province": "山东",
+      "date": "2026-02-24",
+      "title": "2026年度山东省创新药物和高端医疗器械申报工作",
+      "department": "山东省科技厅",
+      "deadline": "2026-02-28",
+      "funding": "创新药物和医疗器械专项",
+      "summary": "申报创新药物、高端医疗器械研发和成果转化项目",
+      "url": "http://kjt.shandong.gov.cn/art/2026/2/24/art_13360_10323758.html"
+    },
+    {
+      "province": "山东",
+      "date": "2026-01-06",
+      "title": "山东省创新药物与高端医疗器械研发补助资金申报工作",
+      "department": "山东省科技厅",
+      "deadline": "2026-02-02",
+      "funding": "创新药物和医疗器械研发补助",
+      "summary": "申报创新药物、高端医疗器械等生物医药项目研发补助资金",
+      "url": "http://kjt.shandong.gov.cn/art/2026/1/6/art_13360_10323138.html"
+    },
+    {
+      "province": "陕西",
+      "date": "2025-07-02",
+      "title": "2026年度陕西省重点研发计划项目申报指南",
+      "department": "陕西省科技厅",
+      "deadline": "2025-07-02",
+      "funding": "省重点研发计划",
+      "summary": "支持增材制造（3D打印）技术与装备等先进制造领域项目申报",
+      "url": "https://kjj.ankang.gov.cn/UploadFiles/akjyhfj29/file/20250702/20250702165730_8994.pdf"
+    },
+    {
+      "province": "广东",
+      "date": "2025-10-03",
+      "title": "2026～2027年度广东省重点领域研发计划\"激光与增材制造\"专项",
+      "department": "广东省科学技术厅",
+      "deadline": "2025-10-03",
+      "funding": "省重点领域研发计划",
+      "summary": "申报激光与增材制造（3D打印）相关项目，支持先进制造技术发展",
+      "url": "https://news.qq.com/rain/a/20251003A01VJJ00"
+    },
+    {
+      "province": "广东",
+      "date": "2026-01-04",
+      "title": "广东省促进医疗卫生机构科技成果转化和职务科技成果权属分割改革",
+      "department": "广东省工业和信息化厅等12部门",
+      "deadline": "2026-01-04",
+      "funding": "科技成果转化相关",
+      "summary": "支持医疗卫生机构科技成果转化，包括医疗器械、创新药物等转化平台建设",
+      "url": "http://www.gdbb.gov.cn/tzgg/202601/t20260104_106519.html"
+    },
+    {
+      "province": "东莞",
+      "date": "2025-12-29",
+      "title": "2026年东莞市重大科技项目申报",
+      "department": "东莞市科技局",
+      "deadline": "2025-12-29",
+      "funding": "市重大科技项目",
+      "summary": "支持高端医疗器械、生物医药等高新技术领域项目申报",
+      "url": "http://dgstb.dg.gov.cn/xxgk/ztzl/kjglhxmjfxxgk/kjjhgl/sbzn/content/post_4482513.html"
+    },
+    {
+      "province": "上海",
+      "date": "2026-01-23",
+      "title": "上海市闵行区2026年度生物医药产业政策申报",
+      "department": "上海市闵行区科技委员会",
+      "deadline": "2026-01-23",
+      "funding": "医疗器械产业政策支持",
+      "summary": "支持新获得二类医疗器械注册证书企业，提供研发投入的20%补助",
+      "url": "https://www.sh-hitech.com/kjcx/21862.html"
+    },
+    {
+      "province": "国家级",
+      "date": "2026-01-13",
+      "title": "国家重点研发计划\"增材制造与激光制造\"等重点专项",
+      "department": "科技部",
+      "deadline": "2026-01-13",
+      "funding": "国家重点研发计划",
+      "summary": "申报增材制造与激光制造等国家重点研发计划项目，通过国家科技管理信息系统公共服务平台申报",
+      "url": "http://www.sz3d.org/newindex.php?s=/home/association/detail/id/319.html"
+    },
+    {
+      "province": "多省",
+      "date": "2025-10-29",
+      "title": "新一代人工智能国家科技重大专项2025年度第一批项目申报",
+      "department": "科技部",
+      "deadline": "2025-10-29",
+      "funding": "国家科技重大专项",
+      "summary": "申报医学AI、医疗人工智能等新一代人工智能应用项目",
+      "url": "https://service.most.gov.cn/kjjh_tztg_all/20251029/5782.html"
+    },
+    {
+      "province": "云南",
+      "date": "2025-08-08",
+      "title": "2025年度云南省科技成果转化项目（非平台类）",
+      "department": "云南省科技厅",
+      "deadline": "2025-09-26",
+      "funding": "成果转化项目",
+      "summary": "申报医药、医疗器械等领域科技成果转化项目",
+      "url": "https://kjt.yn.gov.cn/html/2025/tongzhigonggao_0818/3011343.html"
+    },
+    {
+      "province": "国家级",
+      "date": "2025-06-24",
+      "title": "国家重点研发计划\"诊疗装备与生物医用材料\"重点专项",
+      "department": "科技部",
+      "deadline": "2025-08-11",
+      "funding": "国家重点研发计划",
+      "summary": "申报诊疗装备、医疗器械、生物医用材料等项目，包括3D打印医疗应用方向",
+      "url": "https://www.ustc.edu.cn/info/1362/23506.htm"
     }
   ]
 }
