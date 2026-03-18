@@ -1,118 +1,206 @@
 {
-  "updated": "2026-03-16",
-  "count": 14,
+  "updated": "2026-03-18",
+  "count": 20,
   "items": [
-    {
-      "province": "山东",
-      "date": "2026-03-03",
-      "title": "关于组织开展2026年基础级、先进级智能工厂申报工作的通知",
-      "department": "山东省工业和信息化厅",
-      "summary": "2026年组织开展智能工厂梯度培育工作，按照工信部联合6部门出台的《智能工厂梯度培育管理办法》，开展基础级、先进级智能工厂申报。",
-      "url": "http://gxt.shandong.gov.cn/art/2026/3/3/art_15201_10355610.html"
-    },
-    {
-      "province": "全国",
-      "date": "2026-01-08",
-      "title": "增材制造产业'十四五'答卷与'十五五'展望",
-      "department": "工业和信息化部",
-      "summary": "'十四五'期间工信部等部门密集发布增材制造政策，将其列为重点发展领域，国家与地方政策协同发力推动产业发展。",
-      "url": "https://www.miit-eidc.org.cn/art/2026/1/8/art_1723_12032.html"
-    },
-    {
-      "province": "湖南",
-      "date": "2026-02-28",
-      "title": "关于组织开展2026年度先进级智能工厂申报工作的通知",
-      "department": "湖南省工业和信息化厅",
-      "summary": "组织市州工信局遴选基础级智能工厂，申报先进级智能工厂，推荐材料于3月31日前报送。",
-      "url": "https://www.hunan.gov.cn/zqt/xmsb/202603/t20260302_33924221.html"
-    },
-    {
-      "province": "河北",
-      "date": "2026-02-25",
-      "title": "关于做好2026年度智能工厂梯度培育工作的通知",
-      "department": "河北省工业和信息化厅",
-      "summary": "组织开展智能制造示范工厂验收工作，已获评示范工厂的企业需于3月30日前提出验收申请。",
-      "url": "https://gxt.hebei.gov.cn/hbgyhxxht/xwzx32/tzgg83/2026022508574592407/index.html"
-    },
-    {
-      "province": "全国",
-      "date": "2026-01-09",
-      "title": "工业和信息化部等八部门关于印发《'人工智能+制造'专项行动实施意见》的通知",
-      "department": "工业和信息化部等八部门",
-      "summary": "工信部等8部门联合印发'人工智能+制造'专项行动实施意见，推进智能制造与人工智能融合发展。",
-      "url": "https://www.nda.gov.cn/sjj/zwgk/zcfb/0112/20260107214358696030895_pc.html"
-    },
-    {
-      "province": "深圳",
-      "date": "2026-01-15",
-      "title": "关于印发《深圳市'人工智能+'先进制造业行动计划（2026-2027年）》",
-      "department": "深圳市工业和信息化局",
-      "summary": "深圳市制定'人工智能+'先进制造业行动计划，贯彻落实国务院关于'人工智能+'行动相关精神。",
-      "url": "https://www.sz.gov.cn/szzt2010/wgkzl/jcgk/jcygk/zdzcjc/content/post_12646745.html"
-    },
-    {
-      "province": "全国",
-      "date": "2025-12-30",
-      "title": "工信部部署2026年十项重点工作将培育一批重点行业智能体",
-      "department": "工业和信息化部",
-      "summary": "工信部部署2026年重点工作，推进'人工智能+制造'专项行动，培育智能体、智能原生企业，支持新一代智能制造发展。",
-      "url": "https://www.stcn.com/article/detail/3563780.html"
-    },
-    {
-      "province": "陕西",
-      "date": "2026-01-04",
-      "title": "智能制造助力陕西工业转型升级",
-      "department": "陕西省工业和信息化厅",
-      "summary": "陕西省推动汽车、航空航天等重点企业采用增材制造、工业机器人等新技术，加快工业转型升级。",
-      "url": "https://gxt.shaanxi.gov.cn/sy/tt/202601/t20260104_3601686.html"
-    },
-    {
-      "province": "全国",
-      "date": "2026-03-05",
-      "title": "李连柱2026两会建言：加快制定3D打印家居产品安全与质量标准体系",
-      "department": "市场监管总局、工业和信息化部",
-      "summary": "建议由工信部和市场监管总局牵头，尽快出台3D打印家居用品通用技术规范和环保材料认证指南。",
-      "url": "https://news.qq.com/rain/a/20260305A040VU00"
-    },
     {
       "province": "全国",
       "date": "2026-01-09",
       "title": "工信部发文！3D打印纳入国家重点专项，申报启动",
       "department": "工业和信息化部",
-      "summary": "3D打印纳入国家重点专项，申报工作自2026年1月4日启动至2月5日，面向全国征集增材制造创新项目。",
+      "deadline": "2026-02-05",
+      "funding": "未明确",
+      "summary": "3D打印纳入国家重点专项，面向全国科研机构、企业及高校广泛征集创新项目，聚焦推动增材制造技术突破与产业化应用。申报系统2026年1月4日8:00开放，截止时间为2月5日16:00。",
       "url": "https://www.sohu.com/a/974207399_120723807"
     },
     {
-      "province": "福建",
-      "date": "2026-02-11",
-      "title": "四方签约共建闽清县增材制造产业中心",
-      "department": "福建省工业和信息化厅",
-      "summary": "闽清县增材制造产业中心分两期建设，聚焦增材制造装备生产销售、3D打印服务，以金属3D打印鞋模生产为切入点。",
-      "url": "http://gxt.fujian.gov.cn/zwgk/xw/hydt/snhydt/202602/t20260211_7092029.htm"
+      "province": "全国",
+      "date": "2026-01-13",
+      "title": "国家重点研发计划\"增材制造与激光制造\"等7个重点专项项目申报",
+      "department": "工业和信息化部",
+      "deadline": "2026-02-05",
+      "funding": "未明确",
+      "summary": "增材制造与激光制造等重点专项项目申报，项目申报单位网上填报申报书受理时间为2026年1月4日8:00至2026年2月5日16:00。",
+      "url": "http://www.sz3d.org/newindex.php?s=/home/association/detail/id/319.html"
+    },
+    {
+      "province": "天津",
+      "date": "2025-03-17",
+      "title": "工信部医用材料及医疗器械领域揭榜挂帅申报工作会议",
+      "department": "天津市工业和信息化局",
+      "deadline": "未明确",
+      "funding": "未明确",
+      "summary": "组织开展工信部医用材料及医疗器械领域揭榜挂帅申报工作，包括人工智能医疗器械等领域。",
+      "url": "https://i.tten.cn/news/tzgg/202503/t20250317_166796.html"
+    },
+    {
+      "province": "上海",
+      "date": "2026-01-27",
+      "title": "2026年度沪滇科技协同创新项目申报",
+      "department": "上海市科学技术委员会",
+      "deadline": "未明确",
+      "funding": "未明确",
+      "summary": "上海市科学技术委员会发布2026年度沪滇科技协同创新项目申报，需要上海方和云南方联合申报。",
+      "url": "https://www.shanghai.gov.cn/hqkjcx2/20260127/14c6dc2e8ae54268bc0671a7731f4cf8.html"
+    },
+    {
+      "province": "上海",
+      "date": "2025-05-16",
+      "title": "上海市2025年专精特新\"小巨人\"企业申报",
+      "department": "上海市经济信息化委",
+      "deadline": "2025-06-05",
+      "funding": "未明确",
+      "summary": "上海组织开展2025年专精特新\"小巨人\"企业申报，线上申报时间为2025年5月14日至6月5日。",
+      "url": "https://www.shanghai.gov.cn/qtsj/20250610/29d87562f5d5438286a8c23d95368a2a.html"
+    },
+    {
+      "province": "安徽",
+      "date": "2026-03-12",
+      "title": "安徽省2026年省首批次新材料（第一批）申报评定工作",
+      "department": "安徽省工业和信息化厅",
+      "deadline": "未明确",
+      "funding": "保险补偿支持",
+      "summary": "安徽省工业和信息化厅组织开展2026年省首批次新材料申报评定，申请产品应为2025年1月1日以来经用户批量使用的新材料。",
+      "url": "https://www.ichuanghui.org/10535.html"
+    },
+    {
+      "province": "安徽",
+      "date": "2026-03-12",
+      "title": "安徽省2026年制造强省建设系列政策项目（第一批）申报",
+      "department": "安徽省工业和信息化厅",
+      "deadline": "未明确",
+      "funding": "首批次新材料保险保费补贴等",
+      "summary": "安徽省关于开展2026年制造强省建设系列政策项目申报，包括支持\"三首一保\"促进科技成果转化落地，补贴首批次新材料保险保费。",
+      "url": "http://m.ahqfzx.com/wdoc_30714305.html"
+    },
+    {
+      "province": "安徽",
+      "date": "2025-10-31",
+      "title": "安徽省2026年新型技术改造设备补助入库项目申报",
+      "department": "安徽省工业和信息化厅",
+      "deadline": "未明确",
+      "funding": "最高600万设备投资奖8%",
+      "summary": "安徽省工业和信息化厅关于组织开展2026年新型技术改造设备补助入库项目申报工作，皖北企业享额外20%加成。",
+      "url": "https://jx.ah.gov.cn/public/6991/150317531.html"
+    },
+    {
+      "province": "四川",
+      "date": "未明确",
+      "title": "四川省科学技术厅国家重点研发计划申报",
+      "department": "四川省科学技术厅",
+      "deadline": "未明确",
+      "funding": "未明确",
+      "summary": "四川省科学技术厅组织申报国家重点研发计划战略性科技创新合作等重点专项。",
+      "url": "https://www.alexmiddel.com/"
+    },
+    {
+      "province": "内蒙古",
+      "date": "2025-09-25",
+      "title": "内蒙古2026年创新能力提升计划（科技合作领域）项目申报",
+      "department": "内蒙古自治区科学技术厅",
+      "deadline": "未明确",
+      "funding": "未明确",
+      "summary": "内蒙古自治区科学技术厅发布2026年创新能力提升计划（科技合作领域）项目申报指南。",
+      "url": "http://kjt.nmg.gov.cn/kjdt/tzgg/202509/t20250925_2795655.html"
+    },
+    {
+      "province": "内蒙古",
+      "date": "2025-12-01",
+      "title": "内蒙古2026年中央引导地方科技发展专项资金项目征集",
+      "department": "内蒙古自治区科学技术厅、财政厅",
+      "deadline": "未明确",
+      "funding": "未明确",
+      "summary": "内蒙古自治区科学技术厅、财政厅关于征集2026年中央引导地方科技发展专项资金项目。",
+      "url": "http://kjt.nmg.gov.cn/kjdt/tzgg/202512/t20251201_2826228.html"
+    },
+    {
+      "province": "全国",
+      "date": "2026-02-15",
+      "title": "增材制造产业发展高地建设方案",
+      "department": "工业和信息化部",
+      "deadline": "未明确",
+      "funding": "用地、用能指标倾斜支持",
+      "summary": "支持增材制造重大产业项目实行用地、用能指标倾斜，将金属3D打印纳入政府采购创新产品目录，发挥政府引导基金作用支持企业开展产业项目。",
+      "url": "https://app.xinhuanet.com/news/article.html?articleId=484e40756f8a32c904871006743f5874"
+    },
+    {
+      "province": "全国",
+      "date": "2026-02-06",
+      "title": "智能制造系统和机器人国家重点研发计划申报",
+      "department": "工业和信息化部",
+      "deadline": "2026-02-25",
+      "funding": "未明确",
+      "summary": "申报单位请于2026年2月2日-2月25日通过国家科技管理信息系统公共服务平台提交项目申报材料。",
+      "url": "https://www.shidz.gov.cn/columns/fc6b4309-d198-4db4-9c9a-8358ef6ba98c/202602/06/7c6a69ec-34b1-4f67-a3e6-af2eb05b51aa.html"
     },
     {
       "province": "全国",
       "date": "2026-03-02",
-      "title": "2026年中国3D打印机市场供需现状分析",
-      "department": "工业和信息化部、商务部等部门",
-      "summary": "中国将增材制造纳入智能制造重点方向，商务部等8部门将桌面级3D打印设备列为数字消费重点产品，工信部推动设备进课堂。",
-      "url": "https://www.gonyn.com/industry/1922965.html"
-    },
-    {
-      "province": "上海",
-      "date": "2026-01-12",
-      "title": "关于组织2026年上海市制造业智能化发展投资基金申报",
-      "department": "上海市经济信息化委",
-      "summary": "上海市2026年组织制造业智能化发展申报，支持'AI+制造'专业服务商和制造业数字化、智能化服务。",
-      "url": "https://www.sheitc.sh.gov.cn/cyfz/20260112/11e3168ff89a4eeea2b1afd193c19418.html"
+      "title": "2026年度先进级智能工厂申报工作",
+      "department": "工业和信息化部",
+      "deadline": "未明确",
+      "funding": "未明确",
+      "summary": "组织开展2026年度先进级智能工厂申报工作，鼓励通过验收的揭榜单位积极申报卓越级工厂。",
+      "url": "https://gxt.hunan.gov.cn/gxt/xxgk_71033/tzgg/202603/t20260302_33923977.html"
     },
     {
       "province": "全国",
-      "date": "2025-12-23",
-      "title": "上海市经信委：7个国家重点专项申报启动",
+      "date": "2026-01-23",
+      "title": "福建省2026年先进级智能工厂申报工作",
+      "department": "福建省工业和信息化厅",
+      "deadline": "未明确",
+      "funding": "未明制",
+      "summary": "福建省组织开展2026年先进级智能工厂申报工作，申报项目智能制造水平省内或行业领先。",
+      "url": "http://gxt.fujian.gov.cn/zwgk/zfxxgk/fdzdgknr/gzdt/202601/P020260128609352797726.pdf"
+    },
+    {
+      "province": "全国",
+      "date": "2026-02-10",
+      "title": "福建省首批次重点新材料生产应用支持参考目录增补",
+      "department": "福建省工业和信息化厅",
+      "deadline": "未明确",
+      "funding": "未明确",
+      "summary": "福建省工业和信息化厅关于增补首批次重点新材料生产应用支持参考目录的通知。",
+      "url": "https://gxt.fujian.gov.cn/zwgk/zfxxgk/fdzdgknr/gzdt/202602/t20260210_7091758.htm"
+    },
+    {
+      "province": "全国",
+      "date": "2026-03-06",
+      "title": "2026年省重点研发计划高端装备、新材料等3个专项项目申报",
+      "department": "省工业和信息化厅",
+      "deadline": "未明确",
+      "funding": "未明确",
+      "summary": "根据省工信厅通知，组织申报2026年省重点研发计划高端装备、新材料等3个专项项目。",
+      "url": "https://www.qianlima.com:10443/bid-579748334.html"
+    },
+    {
+      "province": "全国",
+      "date": "2025-12-03",
+      "title": "重庆市智慧医疗装备医工融合创新项目申报",
+      "department": "重庆市工业和信息化局",
+      "deadline": "未明确",
+      "funding": "未明确",
+      "summary": "重庆市关于开展智慧医疗装备医工融合创新项目申报，形成30个具有全国影响力的医工融合创新项目，包括脑机接口设备、CT等高端医疗装备。",
+      "url": "https://jjxxw.cq.gov.cn/zwgk_213/zcwj/qtwj/202512/W020251203407843885970.doc"
+    },
+    {
+      "province": "北京",
+      "date": "2026-01-20",
+      "title": "昌平区医疗器械产业提升行动计划（2026-2028年）",
+      "department": "北京市昌平区政府",
+      "deadline": "未明确",
+      "funding": "未明确",
+      "summary": "昌平区医疗器械产业提升行动计划，依托中国高端医疗装备交流中心，开放ICU、心血管等8大临床场景，每半年举办\"医工协同对接会\"。",
+      "url": "https://www.bjchp.gov.cn/cpqzf/xxgk2671/zcxwjyjzj/zjgg35/2026012008250554292/2026012008241682978.doc"
+    },
+    {
+      "province": "全国",
+      "date": "2025-12-25",
+      "title": "工业大省工信系统2026年工作重点",
       "department": "工业和信息化部",
-      "summary": "国家重点专项包括工业软件、智能机器人、增材制造与激光制造等7个领域，已启动2025年度申报。",
-      "url": "https://finance.eastmoney.com/a/202512233599376275.html"
+      "deadline": "未明确",
+      "funding": "未明确",
+      "summary": "申报工信部2025年人工智能医疗器械创新任务\"揭榜挂帅\"项目，推进建设创新平台，推动企业科技成果转化。",
+      "url": "https://view.inews.qq.com/a/20251225A03W4500"
     }
   ]
 }
