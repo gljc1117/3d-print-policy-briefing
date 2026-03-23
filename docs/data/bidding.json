@@ -1,66 +1,46 @@
 {
-  "updated": "2026-03-16",
-  "count": 16,
+  "updated": "2026-03-23",
+  "count": 23,
   "items": [
     {
-      "province": "四川",
-      "date": "2024-12-18",
-      "title": "中国工程物理研究院职工医院3D打印服务（第二次）项目采购公告",
-      "type": "采购公告",
-      "hospital": "中国工程物理研究院职工医院",
-      "budget": "未知",
-      "summary": "绵阳市3D打印服务采购项目，供应商在中化商务有限公司绵阳项目部获取采购文件。",
-      "url": "https://kxc120.cn/info/1073/3375.htm"
-    },
-    {
-      "province": "安徽",
-      "date": "2025-07-16",
-      "title": "凤阳县人民医院拟采购骨科3D打印机调研公告",
-      "type": "采购需求",
-      "hospital": "凤阳县人民医院",
-      "budget": "未知",
-      "summary": "骨科工作需要，拟采购骨科3D打印机一台。进行市场调研了解设备专业性。",
-      "url": "https://www.fyrmyy.com/survey/notice/3035.html"
-    },
-    {
       "province": "山东",
-      "date": "2026-01-15",
-      "title": "平度市人民医院影像三维重建系统等采购项目二次招标",
+      "date": "2026-03-17",
+      "title": "阳光融和医院普外专业三维重建及骨科专业3D打印",
       "type": "招标公告",
-      "hospital": "平度市人民医院",
-      "budget": "未知",
-      "summary": "医学影像三维重建系统采购项目二次招标，在青岛市公共资源交易电子服务系统获取。",
-      "url": "https://www.ggzy.gov.cn/information/html/a/370000/0201/202601/17/0037272e48f3086242309d681f3d75a1b620.shtml"
-    },
-    {
-      "province": "山东",
-      "date": "2026-02-28",
-      "title": "手术视频辅助操作技术服务项目采购招标公告",
-      "type": "招标公告",
-      "hospital": "山东阳光融和医院",
-      "budget": "未知",
-      "summary": "普外专业三维重建及骨科专业3D打印，含三维医学影像手术计划和手术视频辅助操作技术服务。",
-      "url": "https://www.ygrhhospital.com/content/details130_42162.html"
+      "hospital": "阳光融和医院",
+      "budget": "未公布",
+      "summary": "普外专业三维重建及骨科专业3D打印（含三维医学影像手术计划）、手术视频辅助操作技术服务项目采购招标二次公告",
+      "url": "https://www.ygrhhospital.com/content/details130_42180.html"
     },
     {
       "province": "河南",
-      "date": "2026-01-04",
-      "title": "郑州市第三人民医院三维重建影像融合服务采购项目（二次）采购公告",
-      "type": "采购公告",
-      "hospital": "郑州市第三人民医院",
-      "budget": "未知",
-      "summary": "三维重建影像融合服务采购，医学影像技术服务、软件开发等相关内容。",
-      "url": "https://www.zzssy.com/contentList/2021041117535147779456398/2026010411580118751928672"
+      "date": "2026-03-17",
+      "title": "诸城市人民医院3D医疗打印技术服务项目",
+      "type": "采购公示",
+      "hospital": "诸城市人民医院",
+      "budget": "未公布",
+      "summary": "3D医疗打印技术服务单一来源采购，生产厂家：无锡射手医疗技术有限公司",
+      "url": "https://www.zchosp.com/index.php?c=show&id=2490"
     },
     {
-      "province": "江苏",
-      "date": "2026-01-09",
-      "title": "医学影像三维重建服务网上询价公告",
-      "type": "采购公告",
-      "hospital": "江苏省人民医院重庆医院（重庆市綦江区人民医院）",
-      "budget": "未知",
-      "summary": "医学影像三维重建服务项目采用网上询价方式采购。",
-      "url": "https://www.chinabidding.cn/cpcg_1156_8531/"
+      "province": "河南",
+      "date": "2026-03-10",
+      "title": "开封市人民医院血管造影机三维重建工作站维保项目",
+      "type": "招标公告",
+      "hospital": "开封市人民医院",
+      "budget": "未公布",
+      "summary": "血管造影机三维重建工作站维保项目单一来源采购",
+      "url": "https://www.kfsrmyy.com/www/news/view/id/9745.html"
+    },
+    {
+      "province": "山东",
+      "date": "2026-01-04",
+      "title": "平度市人民医院影像三维重建系统等采购项目",
+      "type": "招标公告",
+      "hospital": "平度市人民医院",
+      "budget": "3040000",
+      "summary": "影像三维重建系统采购，分三个包，预算金额3040000元，其中第一包800000元、第二包400000元、第三包650000元",
+      "url": "http://www.sdjwzb.com/article.html?noticeId=1198"
     },
     {
       "province": "河南",
@@ -68,99 +48,189 @@
       "title": "河南医药大学第一附属医院3D打印系统及配套耗材购置项目",
       "type": "采购公告",
       "hospital": "河南医药大学第一附属医院",
-      "budget": "未知",
-      "summary": "3D打印系统及配套耗材试剂购置项目，磋商公告发布于2026年1月28日。",
+      "budget": "未公布",
+      "summary": "3D打印系统及配套耗材（试剂）购置项目竞争性磋商采购",
       "url": "https://www.hnhxzx.com/index.php?m=home&c=View&a=index&aid=10350"
+    },
+    {
+      "province": "河南",
+      "date": "2026-01-04",
+      "title": "郑州市第三人民医院三维重建影像融合服务采购项目",
+      "type": "采购公告",
+      "hospital": "郑州市第三人民医院",
+      "budget": "未公布",
+      "summary": "三维重建影像融合服务采购，二次采购，涉及医学影像技术服务、软件开发",
+      "url": "https://www.zzssy.com/contentList/2021041117535147779456398/2026010411580118751928672"
+    },
+    {
+      "province": "安徽",
+      "date": "2025-07-16",
+      "title": "凤阳县人民医院拟采购骨科3D打印机",
+      "type": "采购需求",
+      "hospital": "凤阳县人民医院",
+      "budget": "未公布",
+      "summary": "骨科3D打印机市场调研公告，为了解设备功能制定符合使用的要求，进行设备市场调研",
+      "url": "https://www.fyrmyy.com/survey/notice/3035.html"
+    },
+    {
+      "province": "江苏",
+      "date": "2026-02-13",
+      "title": "常州市第一人民医院3D打印创新研究中心技术服务项目",
+      "type": "中标公告",
+      "hospital": "常州市第一人民医院",
+      "budget": "未公布",
+      "summary": "3D打印创新研究中心技术服务项目，需配备专业技术团队，医学三维建模工程师为医学相关专业，熟悉掌握人体解剖学和医学影像学",
+      "url": "http://zfcg.changzhou.gov.cn/upfiles/fromtuisong/20260213/20260213170121_4839_7174.pdf"
+    },
+    {
+      "province": "广东",
+      "date": "2026-02-28",
+      "title": "医学影像计算流体力学三维重建技术服务",
+      "type": "采购文件",
+      "hospital": "未公布",
+      "budget": "未公布",
+      "summary": "定量血流储备分数基于医学影像和计算流体力学，无创评估冠状动脉狭窄，需将高质量影像数据通过精确三维重建模型",
+      "url": "https://www.hnxkyy.com.cn/UploadFiles/file/20260228/20260228151444_2860.docx"
+    },
+    {
+      "province": "重庆",
+      "date": "2026-01-16",
+      "title": "重庆工商大学人工智能学院数字医疗仪器构件3D创制平台",
+      "type": "中标公告",
+      "hospital": "重庆工商大学人工智能学院",
+      "budget": "未公布",
+      "summary": "数字医疗仪器构件3D创制平台采购项目（第二次）中标结果公告",
+      "url": "https://zbcgmis.ctbu.edu.cn/hwzbgs/6563.chtml"
+    },
+    {
+      "province": "山东",
+      "date": "2025-12-18",
+      "title": "医学影像三维重建及脊柱下肢关节参数分析系统",
+      "type": "招标文件",
+      "hospital": "山东省医疗机构",
+      "budget": "未公布",
+      "summary": "具备感兴趣点三维重建及参数输出功能，具备脊柱、下肢关节参数分析，通过外部存储介质或PACS系统导入影像资料",
+      "url": "https://www.sdey.net/uploadfile/2025/1218/20251218145545797.doc"
+    },
+    {
+      "province": "吉林",
+      "date": "2025-01-01",
+      "title": "吉林大学第一医院3D打印光固化树脂模型设计与制作服务",
+      "type": "采购公告",
+      "hospital": "吉林大学第一医院",
+      "budget": "未公布",
+      "summary": "依据患者影像学数据进行三维重建，分离病骨组织完成骨科3D模型重建，提供完整的骨科三维重建分析，支持术前规划和假体精准匹配",
+      "url": "https://www.jdyy.cn/index.php?m=home&c=View&a=index&aid=70453"
+    },
+    {
+      "province": "山东",
+      "date": "2024-09-25",
+      "title": "滨州医学院附属医院医用骨科即时3D外固定打印系统采购",
+      "type": "招标公告",
+      "hospital": "滨州医学院附属医院",
+      "budget": "未公布",
+      "summary": "医用骨科即时3D外固定打印系统等采购招标，合同履行期限自签订之日起至质保期结束",
+      "url": "https://www.bdzmyx.com/home/lanmu/info/id/1894/catId/99.html"
+    },
+    {
+      "province": "河南",
+      "date": "2025-04-11",
+      "title": "济宁医学院附属医院3D打印技术服务采购项目",
+      "type": "采购公告",
+      "hospital": "济宁医学院附属医院",
+      "budget": "未公布",
+      "summary": "3D打印技术服务采购项目竞争性磋商采购公告",
+      "url": "https://www.jyfy.com.cn/info/1275/26834.htm"
+    },
+    {
+      "province": "广东",
+      "date": "2026-01-01",
+      "title": "江门市中心医院3D建模打印技术服务项目",
+      "type": "采购公告",
+      "hospital": "江门市中心医院",
+      "budget": "未公布",
+      "summary": "三维重建及打印服务覆盖心外科、胸外科、普通外科、泌尿外科、四肢关节骨科、脊柱骨科、神经外科、心血管内科、妇产科、康复医学科、口腔综合科等科室",
+      "url": "http://www.jmszxyy.com.cn/ywgk/zbxx/202504/t1013630.html"
+    },
+    {
+      "province": "安徽",
+      "date": "2025-01-01",
+      "title": "安庆市立医院医学3D打印创新研究中心建设及技术服务",
+      "type": "采购公告",
+      "hospital": "安庆市立医院",
+      "budget": "未公布",
+      "summary": "医学3D打印创新研究中心可为患者提供个性化治疗方案，包括三维重建手术规划、3D打印手术模型、3D打印手术导板、3D打印个性化定制植入假体",
+      "url": "https://aqslyy.com.cn/show.php?Id=8054"
+    },
+    {
+      "province": "广东",
+      "date": "2025-11-04",
+      "title": "中山市中医院3D打印模型制作服务采购",
+      "type": "采购公告",
+      "hospital": "中山市中医院",
+      "budget": "未公布",
+      "summary": "3D打印模型制作服务采购公告，报名及提交资料时间至2025年11月9日17时30分止",
+      "url": "https://www.zsszyy.com/article.php?articleId=241706&articleAction=display&tack=videos"
+    },
+    {
+      "province": "广西",
+      "date": "2025-01-01",
+      "title": "广西医科大学第二附属医院个体化3D模型重建、手术导板制备项目",
+      "type": "采购公告",
+      "hospital": "广西医科大学第二附属医院",
+      "budget": "未公布",
+      "summary": "以CT/MR等DICOM格式影像资料为依据，利用计算机技术三维重建模型，通过3D打印机打印出三维可视化的临床病灶实物模型、手术导航导板和三维图文资料",
+      "url": "https://www.gxmu.edu.cn/xwgk/zbxx/t207857.html"
+    },
+    {
+      "province": "河南",
+      "date": "2025-01-01",
+      "title": "河南中医药大学第三附属医院医疗三维数字化重建与打印技术服务",
+      "type": "采购公告",
+      "hospital": "河南中医药大学第三附属医院",
+      "budget": "未公布",
+      "summary": "以临床医学影像或数据资料为依据，利用计算机技术三维重建模型，通过3D打印机打印出三维可视化临床病灶实物模型、手术导航导板、3D数字外固定",
+      "url": "http://www.yuxinbidding.com/biddingproject_news/show_22492.html"
+    },
+    {
+      "province": "四川",
+      "date": "2024-12-01",
+      "title": "成都市第五人民医院2024年医学3D打印临床服务采购项目",
+      "type": "采购公告",
+      "hospital": "成都市第五人民医院",
+      "budget": "未公布",
+      "summary": "提供三维医学影像手术计划图文报告，24小时内完成三维重建，72小时内完成3D打印模型及导板设计制备，满足临床要求",
+      "url": "https://www.nanjixiong.com/forum.php?mod=viewthread&tid=173602&extra=&ordertype=1&mobile=2"
+    },
+    {
+      "province": "上海",
+      "date": "2024-11-27",
+      "title": "复旦大学医学影像3D模型重建软件科研急需采购",
+      "type": "中标公告",
+      "hospital": "复旦大学",
+      "budget": "294000",
+      "summary": "医学影像3D模型重建软件采购，中标供应商为陕西非凡士三维科技有限公司，成交金额29.4万元",
+      "url": "https://cz.fudan.edu.cn/fudanstatic/zbgghw/20241127/2814.html"
+    },
+    {
+      "province": "北京",
+      "date": "2026-03-10",
+      "title": "北京航空航天大学医学科学与工程学院MPI结构成像模块",
+      "type": "招标公告",
+      "hospital": "北京航空航天大学医学科学与工程学院",
+      "budget": "860000",
+      "summary": "MPI结构成像模块采购，成像腔≥200mm，轴向成像视野≥200mm，最高重建分辨率≤2.5μm，能与MPI三维成像系统联用",
+      "url": "https://zbcg.buaa.edu.cn/info/1119/60916.htm"
     },
     {
       "province": "宁夏",
       "date": "2026-01-09",
-      "title": "宁夏回族自治区人民医院维修保养3D打印中心设备项目",
-      "type": "采购公告",
+      "title": "宁夏回族自治区人民医院3D打印中心设备项目",
+      "type": "招标公告",
       "hospital": "宁夏回族自治区人民医院",
-      "budget": "未知",
-      "summary": "3D打印中心设备维修保养项目单一来源采购，开标时间2026年1月9日。",
-      "url": "https://www.nxrmyy.com/list/58/6138.html"
-    },
-    {
-      "province": "安徽",
-      "date": "未知",
-      "title": "安庆市立医院医学3D打印创新研究中心建设及技术服务采购",
-      "type": "采购公告",
-      "hospital": "安庆市立医院",
-      "budget": "未知",
-      "summary": "医学3D打印创新研究中心建设，提供三维重建手术规划、3D打印模型、导板及个性化定制植入假体等服务。",
-      "url": "https://aqslyy.com.cn/show.php?Id=8054"
-    },
-    {
-      "province": "北京",
-      "date": "2026-03-09",
-      "title": "2026年深圳数智医疗3D数字人项目",
-      "type": "招标公告",
-      "hospital": "未知",
-      "budget": "未知",
-      "summary": "深圳数智医疗3D数字人项目，涉及医学3D重建和数字化应用。",
-      "url": "https://www.zsxtzb.com/html/3434141.html"
-    },
-    {
-      "province": "安徽",
-      "date": "2026-03-06",
-      "title": "安阳市医疗设备采购项目招标文件",
-      "type": "招标公告",
-      "hospital": "安阳市相关医疗机构",
-      "budget": "未知",
-      "summary": "安阳市政府采购网发布的医疗设备采购招标文件，涉及3D打印相关内容。",
-      "url": "https://anyang.zfcg.henan.gov.cn/cmsweb81e27e/nas/webfile2024//anyang/rootfiles/2026/03/06/8f03720356244879b6afdc470efda71f.pdf"
-    },
-    {
-      "province": "安徽",
-      "date": "2026-03-16",
-      "title": "2026年铜陵学院金属3D打印机采购项目",
-      "type": "招标公告",
-      "hospital": "铜陵学院",
-      "budget": "未知",
-      "summary": "金属3D打印机采购，配备激光复合熔覆头和同轴激光熔丝头，采用双波段激光器。",
-      "url": "https://www.qianlima.com:10443/bid-581487160.html"
-    },
-    {
-      "province": "河南",
-      "date": "2026-01-22",
-      "title": "河南医疗机构医学影像3D重建软件采购项目",
-      "type": "招标公告",
-      "hospital": "河南省相关医疗机构",
-      "budget": "未知",
-      "summary": "医学影像三维重建相关招标，支持STL/OBJ格式导出，个性化报告设置模板。",
-      "url": "http://www.ccgp-henan.gov.cn/cmsweb81e27e/nas/webfile2024//xinyang/rootfiles/2025/01/22/277c84356f334ab08545b57bbd17c1fa.pdf"
-    },
-    {
-      "province": "广西",
-      "date": "2026-02-24",
-      "title": "广西医疗机构3D打印与医学影像采购项目",
-      "type": "招标公告",
-      "hospital": "广西相关医疗机构",
-      "budget": "未知",
-      "summary": "包含3D打印设备采购，支持多种医学影像处理，包括3D血管表面重建等功能。",
-      "url": "https://obs.gcy.zfcg.gxzf.gov.cn/guangxi-gov-open-doc/1023FP/451002/10007945388/20262/a410fed1-8d8d-4feb-9016-57e0c530058b.pdf"
-    },
-    {
-      "province": "上海",
-      "date": "2026-02-13",
-      "title": "常州市第一人民医院3D打印创新研究中心技术服务项目",
-      "type": "采购公告",
-      "hospital": "常州市第一人民医院",
-      "budget": "未知",
-      "summary": "3D打印创新研究中心技术服务，需配备专业技术团队，医学三维建模工程师提供三维模型重建。",
-      "url": "http://zfcg.changzhou.gov.cn/upfiles/fromtuisong/20260213/20260213170121_4839_7174.pdf"
-    },
-    {
-      "province": "北京",
-      "date": "2026-03-06",
-      "title": "深圳数智医疗新院区配套信息化项目（数字化手术室）中标公告",
-      "type": "中标公告",
-      "hospital": "深圳相关医疗机构",
-      "budget": "未知",
-      "summary": "新院区数字化手术室项目中标，涉及3D医学影像和手术规划相关技术。",
-      "url": "https://zfcg.szggzy.com:8084/gsgg/002001/002001004/002001004001/20260306/9526caec-851b-4c1d-b960-39468fa7c6ff.html"
+      "budget": "未公布",
+      "summary": "3D打印中心设备项目采购招标",
+      "url": "https://www.nxrmyy.com/list/58_4.html"
     }
   ]
 }
