@@ -126,7 +126,7 @@ PUBLIC_BASE_URL=
 新增 `.github/workflows/daily-zy-brief.yml`：
 
 - 支持 `workflow_dispatch`
-- 每天北京时间 07:30 运行：`30 23 * * *` UTC
+- 每天北京时间 06:00 运行：`0 22 * * *` UTC
 - 安装 Python 依赖
 - 运行日报生成
 - 将 `public/` 作为 GitHub Pages 静态目录或 artifact 输出
