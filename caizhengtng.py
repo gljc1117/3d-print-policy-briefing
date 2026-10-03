@@ -121,7 +121,7 @@ def main():
         items = search_projects()
     except Exception as e:
         print(f"[ERROR] 搜索失败: {e}")
-        items = []
+        sys.exit(1)
 
     # Save results for web dashboard
     import json
